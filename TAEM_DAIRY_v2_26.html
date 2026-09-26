@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAEM DAIRY v2.26 | Suwani Nexus Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   TAEM DAIRY v2.26 — Verdant Luxury Estate
+   Cormorant Garamond × Outfit × JetBrains Mono
+   Cream/Ivory base · Forest Green · Burnished Gold
+   Touches of deep ocean blue & warm earth brown
+═══════════════════════════════════════════════════ */
+:root {
+  /* Grounds */
+  --ivory:   #fdfaf2;
+  --cream:   #f7f3e8;
+  --parch:   #f0ead6;
+  --linen:   #ede6d4;
+  /* Forest greens */
+  --forest:  #1a2f0e;
+  --grove:   #243d14;
+  --fern:    #2d5018;
+  --sage:    #4a7a2a;
+  --leaf:    #6aaa3a;
+  --mist:    #c8deb8;
+  /* Gold accents */
+  --gold:    #a0720a;
+  --gilt:    #c8960e;
+  --honey:   #e8b830;
+  --wheat:   #f5d870;
+  /* Ocean blue touches */
+  --navy:    #1a3550;
+  --ocean:   #1e4d6e;
+  --steel:   #2e6a8e;
+  --sky:     #4a9ab8;
+  --foam:    #c0dce8;
+  /* Earth brown */
+  --earth:   #3c2410;
+  --bark:    #5a3820;
+  --clay:    #8a5c38;
+  --sand:    #c8a878;
+  /* Semantic */
+  --danger:  #8b2a1a;
+  --warn:    #8a5c10;
+  --success: #1a5a28;
+  --info:    var(--ocean);
+  /* Text */
+  --text-dark:  #1a1a0e;
+  --text-body:  #2e2e1a;
+  --text-muted: #6a6a50;
+  --text-dim:   #9a9a80;
+  /* Borders */
+  --border:  rgba(26,47,14,.12);
+  --border2: rgba(160,114,10,.22);
+  --border3: rgba(30,77,110,.15);
+  /* Fonts */
+  --fd: 'Cormorant Garamond', serif;
+  --fb: 'Outfit', sans-serif;
+  --fm: 'JetBrains Mono', monospace;
+  --r: 8px;
+  --r2: 14px;
+  --shadow: 0 2px 16px rgba(26,47,14,.1);
+  --shadow2: 0 8px 40px rgba(26,47,14,.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; font-size: 15px; }
+body {
+  font-family: var(--fb);
+  background: var(--cream);
+  color: var(--text-body);
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(74,122,42,.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, rgba(30,77,110,.05) 0%, transparent 50%);
+}
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--mist); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sage); }
+
+/* ═══ GRAIN OVERLAY ═══ */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+  opacity: .4;
+}
+
+/* ═══ LOCK SCREEN ═══ */
+#lockScreen {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ivory);
+  background-image:
+    radial-gradient(ellipse at 25% 35%, rgba(74,122,42,.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(30,77,110,.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 10%, rgba(200,150,14,.06) 0%, transparent 45%);
+}
+.lock-container { text-align: center; max-width: 360px; width: 92%; }
+.lock-emblem {
+  width: 64px; height: 64px; margin: 0 auto 18px;
+  background: linear-gradient(135deg, var(--grove), var(--sage));
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; box-shadow: 0 8px 32px rgba(26,47,14,.2);
+}
+.lock-title {
+  font-family: var(--fd); font-size: 2rem; font-weight: 600;
+  color: var(--forest); letter-spacing: .5px; margin-bottom: 2px;
+}
+.lock-sub { font-size: .78rem; color: var(--text-muted); letter-spacing: 1.5px; font-style: italic; margin-bottom: 28px; }
+.lock-panel {
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(26,47,14,.1);
+  border-radius: var(--r2);
+  padding: 30px 28px;
+  box-shadow: var(--shadow2), 0 0 0 1px rgba(160,114,10,.08);
+}
+.lock-panel h3 { font-family: var(--fd); font-size: 1.1rem; color: var(--forest); margin-bottom: 4px; font-weight: 600; }
+.lock-panel p { font-size: .78rem; color: var(--text-muted); margin-bottom: 18px; font-style: italic; }
+.pin-dots { display: flex; justify-content: center; gap: 12px; margin: 16px 0; }
+.pin-dot {
+  width: 46px; height: 54px;
+  background: var(--cream); border: 1.5px solid var(--border2);
+  border-radius: var(--r); display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: var(--grove); transition: all .2s;
+}
+.pin-dot.filled { border-color: var(--sage); background: rgba(74,122,42,.08); }
+.numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 200px; margin: 0 auto; }
+.nk {
+  height: 46px; background: var(--cream);
+  border: 1px solid var(--border); border-radius: var(--r);
+  color: var(--forest); font-family: var(--fm); font-size: 1rem;
+  cursor: pointer; transition: all .15s; font-weight: 500;
+}
+.nk:hover { background: rgba(74,122,42,.08); border-color: var(--sage); }
+.nk:active { background: rgba(74,122,42,.16); }
+.pin-msg { font-size: .76rem; min-height: 18px; margin-top: 8px; font-style: italic; }
+.pin-recover { margin-top: 14px; font-size: .7rem; color: var(--text-muted); cursor: pointer; text-decoration: underline; }
+.pin-recover:hover { color: var(--ocean); }
+#recoverBox {
+  display: none; margin-top: 12px; padding: 12px;
+  background: rgba(30,77,110,.06); border: 1px solid var(--border3);
+  border-radius: var(--r); font-size: .74rem; color: var(--text-muted);
+  line-height: 1.8; text-align: left;
+}
+#recoverBox strong { color: var(--gold); }
+
+/* ═══ TOP BAR ═══ */
+#topBar {
+  height: 58px; background: var(--forest);
+  display: flex; align-items: center; padding: 0 20px; gap: 14px; flex-shrink: 0;
+  position: relative; z-index: 50;
+  border-bottom: 2px solid var(--gilt);
+  background-image: linear-gradient(90deg, var(--forest) 0%, var(--grove) 60%, var(--fern) 100%);
+}
+.tb-brand { display: flex; align-items: center; gap: 10px; }
+.tb-icon {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--gilt), var(--honey));
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.tb-name { font-family: var(--fd); font-size: 1.15rem; color: var(--honey); letter-spacing: .5px; font-weight: 600; line-height: 1; }
+.tb-ver { font-size: .58rem; color: rgba(255,255,255,.4); letter-spacing: 1px; font-style: italic; }
+.tb-farm-input {
+  background: rgba(255,255,255,.08); border: none;
+  border-bottom: 1px dashed rgba(232,184,48,.4);
+  color: rgba(255,255,255,.85); font-family: var(--fd); font-size: .95rem;
+  width: 180px; outline: none; text-align: center; padding: 2px 6px;
+  transition: .2s;
+}
+.tb-farm-input:focus { border-bottom-color: var(--honey); color: var(--honey); }
+.tb-farm-input::placeholder { color: rgba(255,255,255,.3); font-style: italic; }
+.tb-spacer { flex: 1; }
+.tb-date {
+  font-family: var(--fm); font-size: .66rem;
+  color: rgba(255,255,255,.45); letter-spacing: .5px;
+}
+.tb-curr {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+  border-radius: 6px; padding: 4px 8px; color: rgba(255,255,255,.8);
+  font-family: var(--fb); font-size: .74rem; cursor: pointer; outline: none;
+  min-width: 100px;
+}
+.tb-curr option { background: var(--forest); }
+.tb-btn {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+  border-radius: 6px; color: rgba(255,255,255,.75);
+  padding: 5px 13px; font-family: var(--fb); font-size: .74rem;
+  cursor: pointer; transition: .18s; white-space: nowrap;
+}
+.tb-btn:hover { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.35); color: #fff; }
+.tb-btn.red { border-color: rgba(200,80,60,.5); color: #f0907a; }
+.tb-btn.red:hover { background: rgba(200,80,60,.2); }
+
+/* LICENSE BANNER */
+#licBanner {
+  background: linear-gradient(90deg, rgba(160,114,10,.12), rgba(200,150,14,.08));
+  border-bottom: 1px solid rgba(160,114,10,.25);
+  padding: 5px 20px; text-align: center;
+  font-size: .74rem; color: var(--gold);
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  flex-wrap: wrap; flex-shrink: 0;
+}
+.lic-act { padding: 3px 14px; background: var(--gilt); color: var(--forest); border: none; border-radius: 4px; font-size: .7rem; font-weight: 700; cursor: pointer; font-family: var(--fb); letter-spacing: .5px; }
+
+/* ═══ APP SHELL ═══ */
+#appShell { display: flex; height: calc(100vh - 58px); overflow: hidden; }
+#appShell.bannered { height: calc(100vh - 58px - 30px); }
+
+/* ═══ SIDEBAR ═══ */
+#sidebar {
+  width: 218px; flex-shrink: 0;
+  background: var(--forest);
+  background-image: linear-gradient(180deg, var(--forest) 0%, var(--grove) 100%);
+  border-right: 1px solid rgba(160,114,10,.2);
+  overflow-y: auto; display: flex; flex-direction: column;
+}
+.nav-sect { padding: 10px 0; }
+.nav-lbl {
+  font-size: .6rem; text-transform: uppercase; letter-spacing: 2.5px;
+  color: rgba(255,255,255,.28); padding: 4px 16px 2px;
+  font-weight: 600; font-family: var(--fd);
+}
+.nav-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 16px; cursor: pointer;
+  color: rgba(255,255,255,.55); font-size: .8rem;
+  transition: all .18s; border-left: 3px solid transparent;
+  font-family: var(--fb);
+}
+.nav-item:hover { background: rgba(255,255,255,.06); color: rgba(255,255,255,.9); }
+.nav-item.on { background: rgba(200,150,14,.15); color: var(--honey); border-left-color: var(--gilt); }
+.nav-ic { font-size: .88rem; flex-shrink: 0; }
+.nav-div { height: 1px; background: rgba(255,255,255,.07); margin: 4px 14px; }
+
+/* ═══ MAIN ═══ */
+#mainArea { flex: 1; overflow-y: auto; padding: 22px 24px 40px; }
+
+/* ═══ PAGES ═══ */
+.page { display: none; animation: pIn .28s ease; }
+.page.on { display: block; }
+@keyframes pIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+.pg-head { margin-bottom: 6px; display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap; }
+.pg-title { font-family: var(--fd); font-size: 1.7rem; font-weight: 600; color: var(--forest); letter-spacing: .3px; line-height: 1; }
+.pg-sub { font-size: .78rem; color: var(--text-muted); font-style: italic; margin-bottom: 18px; }
+.pg-rule { height: 1px; background: linear-gradient(90deg, var(--border2), transparent); margin-bottom: 18px; }
+
+/* ═══ KPI GRID ═══ */
+.kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.kpi {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 14px 16px;
+  position: relative; overflow: hidden; box-shadow: var(--shadow);
+  transition: .25s;
+}
+.kpi::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--sage), var(--gilt));
+}
+.kpi:hover { box-shadow: var(--shadow2); transform: translateY(-2px); }
+.kpi-lbl { font-size: .66rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px; font-weight: 600; }
+.kpi-val { font-family: var(--fd); font-size: 1.55rem; font-weight: 600; color: var(--forest); line-height: 1; }
+.kpi-val.gold { color: var(--gold); }
+.kpi-val.ocean { color: var(--ocean); }
+.kpi-val.danger { color: var(--danger); }
+.kpi-val.success { color: var(--success); }
+.kpi-hint { font-size: .66rem; color: var(--text-dim); margin-top: 3px; font-style: italic; }
+
+/* ═══ CARDS ═══ */
+.card {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 20px;
+  margin-bottom: 16px; box-shadow: var(--shadow);
+  position: relative;
+}
+.card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--sage), var(--gilt)); border-radius: 3px 0 0 3px; }
+.card-t {
+  font-family: var(--fd); font-size: 1.05rem; font-weight: 600;
+  color: var(--forest); margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 9px;
+}
+.card-t .ic { font-size: 1.1rem; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+/* ═══ TABS ═══ */
+.tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 16px; flex-wrap: wrap; }
+.tab {
+  padding: 8px 18px; cursor: pointer;
+  font-size: .78rem; color: var(--text-muted);
+  border-bottom: 2px solid transparent; margin-bottom: -2px;
+  transition: .18s; font-family: var(--fb); white-space: nowrap; letter-spacing: .3px;
+}
+.tab:hover { color: var(--forest); }
+.tab.on { color: var(--forest); border-bottom-color: var(--gilt); font-weight: 600; }
+.tab-pane { display: none; }
+.tab-pane.on { display: block; }
+
+/* ═══ TABLE ═══ */
+.tbl-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--border); box-shadow: var(--shadow); }
+table.data { width: 100%; border-collapse: collapse; font-size: .78rem; }
+table.data thead th {
+  background: var(--forest);
+  color: rgba(255,255,255,.75);
+  padding: 9px 11px; text-align: left;
+  font-size: .65rem; text-transform: uppercase; letter-spacing: .8px;
+  white-space: nowrap; font-weight: 500; font-family: var(--fd);
+}
+table.data tbody tr { border-bottom: 1px solid var(--border); transition: .1s; }
+table.data tbody tr:hover { background: rgba(74,122,42,.04); }
+table.data tbody tr:nth-child(even) { background: rgba(26,47,14,.02); }
+table.data tbody td { padding: 7px 11px; color: var(--text-body); }
+table.data td input, table.data td select {
+  background: transparent; border: none; color: var(--text-body);
+  font-family: var(--fb); font-size: .78rem; width: 100%; outline: none;
+}
+table.data td input:focus { background: rgba(74,122,42,.06); border-radius: 4px; padding-left: 4px; }
+td.num { text-align: right; font-family: var(--fm); }
+tr.tot-row td { background: rgba(26,47,14,.05); font-weight: 700; border-top: 1px solid var(--border2); }
+
+/* ═══ FORMS ═══ */
+.fg { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 13px; margin-bottom: 14px; }
+.fg-full { grid-column: 1 / -1; }
+.ff { display: flex; flex-direction: column; gap: 4px; }
+.fl { font-size: .65rem; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); font-weight: 600; font-family: var(--fd); }
+.fl .req { color: var(--danger); margin-left: 2px; }
+.fi {
+  background: var(--cream); border: 1.5px solid var(--border);
+  border-radius: var(--r); padding: 8px 11px;
+  color: var(--text-body); font-family: var(--fb); font-size: .84rem;
+  outline: none; transition: .2s; width: 100%;
+}
+.fi:focus { border-color: var(--sage); background: white; box-shadow: 0 0 0 3px rgba(74,122,42,.1); }
+.fi option { background: white; }
+.fi::placeholder { color: var(--text-dim); font-style: italic; }
+textarea.fi { resize: vertical; min-height: 64px; }
+
+/* ═══ BUTTONS ═══ */
+.btn {
+  padding: 8px 18px; border-radius: var(--r); border: 1.5px solid;
+  cursor: pointer; font-family: var(--fd); font-size: .84rem; font-weight: 600;
+  transition: all .18s; letter-spacing: .3px; white-space: nowrap;
+}
+.btn-forest { background: var(--forest); border-color: var(--forest); color: var(--honey); }
+.btn-forest:hover { background: var(--grove); }
+.btn-gold { background: rgba(160,114,10,.1); border-color: rgba(160,114,10,.35); color: var(--gold); }
+.btn-gold:hover { background: rgba(160,114,10,.2); }
+.btn-outline { background: transparent; border-color: var(--border2); color: var(--forest); }
+.btn-outline:hover { border-color: var(--sage); background: rgba(74,122,42,.06); }
+.btn-ocean { background: rgba(30,77,110,.1); border-color: rgba(30,77,110,.3); color: var(--ocean); }
+.btn-ocean:hover { background: rgba(30,77,110,.18); }
+.btn-danger { background: rgba(139,42,26,.08); border-color: rgba(139,42,26,.3); color: var(--danger); }
+.btn-danger:hover { background: rgba(139,42,26,.16); }
+.btn-success { background: rgba(26,90,40,.12); border-color: rgba(26,90,40,.3); color: var(--success); }
+.btn-sm { padding: 3px 10px; font-size: .72rem; }
+.btn-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; align-items: center; }
+
+/* ═══ BADGES ═══ */
+.badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: .65rem; font-weight: 700; font-family: var(--fd); letter-spacing: .3px; }
+.b-green  { background: rgba(26,90,40,.1);  color: var(--success); border: 1px solid rgba(26,90,40,.25); }
+.b-gold   { background: rgba(160,114,10,.1); color: var(--gold);    border: 1px solid rgba(160,114,10,.25); }
+.b-ocean  { background: rgba(30,77,110,.1);  color: var(--ocean);   border: 1px solid rgba(30,77,110,.25); }
+.b-danger { background: rgba(139,42,26,.1);  color: var(--danger);  border: 1px solid rgba(139,42,26,.25); }
+.b-earth  { background: rgba(90,56,32,.1);   color: var(--bark);    border: 1px solid rgba(90,56,32,.25); }
+.b-sage   { background: rgba(74,122,42,.1);  color: var(--sage);    border: 1px solid rgba(74,122,42,.25); }
+
+/* ═══ NET WORTH ROWS ═══ */
+.nw-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: .8rem; }
+.nw-row label { color: var(--text-muted); flex: 1; font-family: var(--fb); }
+.nw-inp { background: transparent; border: none; color: var(--gold); font-family: var(--fm); text-align: right; width: 115px; outline: none; font-size: .8rem; }
+.nw-inp:focus { background: rgba(160,114,10,.06); border-radius: 4px; }
+.nw-cat { font-size: .66rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); padding: 8px 0 4px; font-family: var(--fd); font-weight: 600; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+.nw-sub { font-style: italic; font-size: .72rem; color: var(--text-dim); padding: 2px 0; }
+
+/* ═══ NOTIFICATIONS ═══ */
+.notif {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 11px 14px; margin-bottom: 8px;
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--r2); box-shadow: var(--shadow);
+  border-left: 4px solid var(--sage); transition: .2s;
+}
+.notif:hover { box-shadow: var(--shadow2); }
+.notif.overdue { border-left-color: var(--danger); }
+.notif.gold { border-left-color: var(--gold); }
+.notif.ocean { border-left-color: var(--ocean); }
+.notif-ic { font-size: 1.15rem; flex-shrink: 0; margin-top: 1px; }
+.notif-title { font-family: var(--fd); font-size: .9rem; font-weight: 600; color: var(--forest); margin-bottom: 2px; }
+.notif-body { font-size: .76rem; color: var(--text-muted); line-height: 1.5; }
+.notif-time { font-size: .66rem; color: var(--text-dim); margin-top: 4px; font-family: var(--fm); }
+
+/* ═══ CONTACT CARD ═══ */
+.ccard {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 16px;
+  box-shadow: var(--shadow); transition: .25s;
+}
+.ccard:hover { box-shadow: var(--shadow2); transform: translateY(-2px); }
+.ccard-av {
+  width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--grove), var(--sage));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fd); font-weight: 700; font-size: 1rem; color: var(--honey);
+}
+.ccard-name { font-family: var(--fd); font-weight: 600; font-size: .95rem; color: var(--forest); }
+.ccard-d { font-size: .76rem; color: var(--text-muted); margin-top: 1px; }
+.clink-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.clink {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 16px; font-size: .7rem;
+  text-decoration: none; transition: .18s; border: 1px solid;
+}
+.clink-wa { background: rgba(37,211,102,.08); border-color: rgba(37,211,102,.3); color: #25d366; }
+.clink-wa:hover { background: rgba(37,211,102,.18); }
+.clink-em { background: rgba(30,77,110,.08); border-color: rgba(30,77,110,.25); color: var(--ocean); }
+.clink-em:hover { background: rgba(30,77,110,.15); }
+.clink-ph { background: rgba(160,114,10,.08); border-color: rgba(160,114,10,.25); color: var(--gold); }
+.clink-ph:hover { background: rgba(160,114,10,.18); }
+
+/* ═══ SEARCH ═══ */
+.search-w { position: relative; max-width: 300px; }
+.search-inp {
+  width: 100%; background: white; border: 1.5px solid var(--border);
+  border-radius: var(--r); padding: 7px 12px 7px 32px;
+  color: var(--text-body); font-family: var(--fb); font-size: .82rem;
+  outline: none; transition: .18s;
+}
+.search-inp:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(74,122,42,.1); }
+.search-ic { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .4; font-size: .85rem; }
+
+/* ═══ MODAL ═══ */
+.modal-ov {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,47,14,.4); backdrop-filter: blur(4px);
+  z-index: 3000; align-items: center; justify-content: center;
+}
+.modal-ov.on { display: flex; }
+.modal-box {
+  background: white; border: 1px solid var(--border2);
+  border-radius: var(--r2); padding: 26px;
+  max-width: 520px; width: 94%; max-height: 86vh; overflow-y: auto;
+  box-shadow: var(--shadow2), 0 0 0 1px rgba(160,114,10,.1);
+}
+.modal-t { font-family: var(--fd); font-size: 1.3rem; font-weight: 600; color: var(--forest); margin-bottom: 16px; }
+.modal-foot { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
+
+/* ═══ CHARTS ═══ */
+.mini-chart {
+  height: 160px; background: var(--cream);
+  border-radius: var(--r); display: flex;
+  align-items: flex-end; padding: 8px; gap: 3px; overflow: hidden;
+}
+.mbar { flex: 1; border-radius: 3px 3px 0 0; }
+
+/* ═══ STATUS DOTS ═══ */
+.sd { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.sd-green  { background: var(--leaf); }
+.sd-gold   { background: var(--gilt); }
+.sd-ocean  { background: var(--sky); }
+.sd-danger { background: #c0392b; }
+
+/* ═══ PROGRESS ═══ */
+.prog { height: 5px; background: var(--parch); border-radius: 3px; overflow: hidden; margin-top: 5px; }
+.prog-f { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--sage), var(--gilt)); transition: .4s; }
+
+/* ═══ SECTION DIVIDER ═══ */
+.sec-divider { display: flex; align-items: center; gap: 12px; margin: 18px 0 12px; }
+.sec-divider span { font-family: var(--fd); font-size: .72rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); white-space: nowrap; }
+.sec-divider::before, .sec-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ═══ TOAST ═══ */
+#toast {
+  position: fixed; bottom: 20px; right: 20px;
+  background: var(--forest); border: 1px solid var(--gilt);
+  border-radius: var(--r); padding: 10px 18px;
+  color: var(--honey); font-size: .82rem; font-family: var(--fd);
+  opacity: 0; transform: translateY(8px); transition: .3s;
+  z-index: 8000; pointer-events: none; max-width: 320px;
+}
+#toast.show { opacity: 1; transform: none; }
+
+/* ═══ PRINT ═══ */
+@media print {
+  #lockScreen, #topBar, #sidebar, #licBanner, .btn-row, .modal-ov { display: none !important; }
+  body, html { overflow: visible !important; height: auto !important; }
+  #appShell { display: block !important; height: auto !important; }
+  #mainArea { padding: 0 !important; overflow: visible !important; }
+  .page { display: block !important; }
+  .card { page-break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  #sidebar { position: fixed; left: -225px; top: 0; bottom: 0; z-index: 200; transition: left .3s; }
+  #sidebar.open { left: 0; }
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  #mainArea { padding: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LOCK SCREEN ═══════════════ -->
+<div id="lockScreen">
+  <div class="lock-container">
+    <div class="lock-emblem">&#x1F95B;</div>
+    <div class="lock-title">TAEM DAIRY</div>
+    <div class="lock-sub">v2.26 &nbsp;&middot;&nbsp; Suwani Nexus Hub &nbsp;&middot;&nbsp; Prof Obert Tada (PhD)</div>
+    <div class="lock-panel">
+      <h3 id="lockTitle">Set Your 4-Digit Passcode</h3>
+      <p id="lockSubtitle">Secure your dairy management data</p>
+      <div class="pin-dots">
+        <div class="pin-dot" id="pd0"></div>
+        <div class="pin-dot" id="pd1"></div>
+        <div class="pin-dot" id="pd2"></div>
+        <div class="pin-dot" id="pd3"></div>
+      </div>
+      <div class="numpad">
+        <button class="nk" onclick="kp(1)">1</button><button class="nk" onclick="kp(2)">2</button><button class="nk" onclick="kp(3)">3</button>
+        <button class="nk" onclick="kp(4)">4</button><button class="nk" onclick="kp(5)">5</button><button class="nk" onclick="kp(6)">6</button>
+        <button class="nk" onclick="kp(7)">7</button><button class="nk" onclick="kp(8)">8</button><button class="nk" onclick="kp(9)">9</button>
+        <button class="nk" onclick="kp('C')">&larr;</button><button class="nk" onclick="kp(0)">0</button><button class="nk" onclick="kp('OK')">&#x2713;</button>
+      </div>
+      <div class="pin-msg" id="pinMsg"></div>
+      <div class="pin-recover" onclick="toggleRecover()">Forgot passcode? Contact Suwani Nexus Hub</div>
+      <div id="recoverBox">
+        <strong>Recovery Options</strong><br>
+        &#x1F4E7; taemsoftware@gmail.com<br>
+        WhatsApp: +27 63 953 1185 | +27 67 277 6512<br>
+        &#x1F4DE; +27 63 953 1185 | +27 78 334 7950<br>
+        <button class="btn btn-danger btn-sm" style="margin-top:8px;width:100%;" onclick="emergencyReset()">Emergency Reset (PIN Only)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ LICENSE MODAL ═══════════════ -->
+<div class="modal-ov" id="licModal">
+  <div class="modal-box">
+    <div class="modal-t">License Activation</div>
+    <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:14px;font-style:italic;">Send your Device ID to Suwani Nexus Hub to obtain a license key.</p>
+    <div class="ff" style="margin-bottom:10px;"><label class="fl">Your Device ID</label>
+      <div style="font-family:var(--fm);font-size:.8rem;background:var(--parch);border:1.5px solid var(--border2);border-radius:var(--r);padding:8px 12px;color:var(--gold);word-break:break-all;" id="modalDevId">-</div></div>
+    <div style="font-size:.76rem;color:var(--text-muted);margin-bottom:12px;line-height:1.7;">
+      &#x1F4E7; taemsoftware@gmail.com &nbsp;&middot;&nbsp; WhatsApp: +27 63 953 1185</div>
+    <div class="ff" style="margin-bottom:10px;"><label class="fl">License Key</label>
+      <input class="fi" id="licKeyInput" placeholder="SNH-DAIRY-ANN-XXXX-XXXX-XXXX-XXXXXX"></div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeModal('licModal')">Close</button>
+      <button class="btn btn-forest" onclick="activateLicense()">Activate</button>
+    </div>
+    <div id="licActivMsg" style="margin-top:8px;font-size:.78rem;min-height:16px;"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ ABOUT MODAL ═══════════════ -->
+<div class="modal-ov" id="aboutModal">
+  <div class="modal-box">
+    <div class="modal-t">About TAEM DAIRY v2.26</div>
+    <div style="font-size:.85rem;color:var(--text-muted);line-height:2.1;">
+      <div><strong style="color:var(--text-body);">Software:</strong> TAEM DAIRY v2.26</div>
+      <div><strong style="color:var(--text-body);">Developer:</strong> Suwani Nexus Hub</div>
+      <div><strong style="color:var(--text-body);">Academic Lead:</strong> Prof Obert Tada (PhD)</div>
+      <div><strong style="color:var(--text-body);">Copyright:</strong> &copy; Suwani Nexus Hub &ndash; TAEM. All rights reserved.</div>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">
+        +27 63 953 1185 | +27 78 334 7950<br>
+        WhatsApp: +27 63 953 1185 | +27 67 277 6512<br>
+        taemsoftware@gmail.com
+      </div>
+    </div>
+    <div class="clink-row" style="margin-top:12px;">
+      <a class="clink clink-wa" href="https://wa.me/27639531185" target="_blank">WhatsApp</a>
+      <a class="clink clink-em" href="mailto:taemsoftware@gmail.com">Email</a>
+      <a class="clink clink-ph" href="tel:+27639531185">Call</a>
+    </div>
+    <div class="modal-foot"><button class="btn btn-outline" onclick="closeModal('aboutModal')">Close</button></div>
+  </div>
+</div>
+
+<!-- ═══════════════ ANIMAL MODAL ═══════════════ -->
+<div class="modal-ov" id="animalModal">
+  <div class="modal-box" style="max-width:640px;">
+    <div class="modal-t" id="animalModalTitle">Register Animal</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Animal ID (Tag) <span class="req">*</span></label><input class="fi" id="am-id"></div>
+      <div class="ff"><label class="fl">Name</label><input class="fi" id="am-name"></div>
+      <div class="ff"><label class="fl">RFID / Barcode</label><input class="fi" id="am-rfid"></div>
+      <div class="ff"><label class="fl">Breed</label>
+        <select class="fi" id="am-breed">
+          <option>Holstein-Friesian</option><option>Jersey</option><option>Ayrshire</option>
+          <option>Guernsey</option><option>Brown Swiss</option><option>Simmental</option>
+          <option>Fleckvieh</option><option>Local Zebu</option><option>Mashona</option>
+          <option>Jersey x Holstein</option><option>Ayrshire x Zebu</option>
+          <option>Crossbred</option><option>Other</option>
+        </select></div>
+      <div class="ff"><label class="fl">Date of Birth</label><input class="fi" type="date" id="am-dob"></div>
+      <div class="ff"><label class="fl">Sex</label>
+        <select class="fi" id="am-sex">
+          <option>Female (Cow)</option><option>Female (Heifer)</option>
+          <option>Male (Bull)</option><option>Male (Steer)</option>
+        </select></div>
+      <div class="ff"><label class="fl">Parity</label><input class="fi" type="number" id="am-parity" min="0" value="0"></div>
+      <div class="ff"><label class="fl">Lifecycle Stage</label>
+        <select class="fi" id="am-stage">
+          <option>Milking</option><option>Dry</option><option>Pregnant (Milking)</option>
+          <option>Pregnant (Dry)</option><option>Transition (Close-up)</option>
+          <option>Fresh Cow (0-30 DIM)</option><option>Heifer (Pre-calving)</option>
+          <option>Calf</option><option>Weaner</option><option>Bull</option>
+        </select></div>
+      <div class="ff"><label class="fl">Sire ID</label><input class="fi" id="am-sire"></div>
+      <div class="ff"><label class="fl">Dam ID</label><input class="fi" id="am-dam"></div>
+      <div class="ff"><label class="fl">Source</label>
+        <select class="fi" id="am-source">
+          <option>Born on Farm</option><option>Purchased</option><option>Transferred In</option>
+        </select></div>
+      <div class="ff"><label class="fl">Acquisition Date</label><input class="fi" type="date" id="am-acqdate"></div>
+      <div class="ff"><label class="fl">Purchase Price</label><input class="fi" type="number" id="am-price" value="0"></div>
+      <div class="ff"><label class="fl">Status</label>
+        <select class="fi" id="am-status">
+          <option>Active</option><option>Dry</option><option>Sick</option>
+          <option>Sold</option><option>Died</option><option>Culled</option>
+        </select></div>
+      <div class="ff" style="grid-column:1/-1;"><label class="fl">Notes</label><input class="fi" id="am-notes"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeModal('animalModal')">Cancel</button>
+      <button class="btn btn-forest" onclick="saveAnimal()">Save Animal</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SUPPLIER MODAL ═══════════════ -->
+<div class="modal-ov" id="suppModal">
+  <div class="modal-box">
+    <div class="modal-t" id="suppModalTitle">Add Supplier</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Company Name <span class="req">*</span></label><input class="fi" id="sm-name"></div>
+      <div class="ff"><label class="fl">Contact Person</label><input class="fi" id="sm-contact"></div>
+      <div class="ff"><label class="fl">Phone</label><input class="fi" id="sm-phone"></div>
+      <div class="ff"><label class="fl">WhatsApp</label><input class="fi" id="sm-wa"></div>
+      <div class="ff"><label class="fl">Email</label><input class="fi" id="sm-email"></div>
+      <div class="ff"><label class="fl">Category</label>
+        <select class="fi" id="sm-cat">
+          <option>Feed &amp; Nutrition</option><option>Veterinary Supplies</option>
+          <option>AI &amp; Genetics</option><option>Milking Equipment</option>
+          <option>Medicines &amp; Vaccines</option><option>Dairy Chemicals</option>
+          <option>Packaging</option><option>Finance &amp; Credit</option><option>Other</option>
+        </select></div>
+      <div class="ff" style="grid-column:1/-1;"><label class="fl">Products / Services</label><input class="fi" id="sm-products"></div>
+      <div class="ff" style="grid-column:1/-1;"><label class="fl">Address</label><textarea class="fi" id="sm-addr" rows="2"></textarea></div>
+      <div class="ff"><label class="fl">Credit Terms (days)</label><input class="fi" type="number" id="sm-terms" value="30"></div>
+      <div class="ff"><label class="fl">Account No.</label><input class="fi" id="sm-accno"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeModal('suppModal')">Cancel</button>
+      <button class="btn btn-forest" onclick="saveSupplier()">Save Supplier</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CUSTOMER MODAL ═══════════════ -->
+<div class="modal-ov" id="custModal">
+  <div class="modal-box">
+    <div class="modal-t" id="custModalTitle">Add Customer</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Name / Company <span class="req">*</span></label><input class="fi" id="cm-name"></div>
+      <div class="ff"><label class="fl">Contact Person</label><input class="fi" id="cm-contact"></div>
+      <div class="ff"><label class="fl">Phone</label><input class="fi" id="cm-phone"></div>
+      <div class="ff"><label class="fl">WhatsApp</label><input class="fi" id="cm-wa"></div>
+      <div class="ff"><label class="fl">Email</label><input class="fi" id="cm-email"></div>
+      <div class="ff"><label class="fl">Customer Type</label>
+        <select class="fi" id="cm-type">
+          <option>Dairy Processor</option><option>Milk Collector</option>
+          <option>Direct Consumer</option><option>Retail / Supermarket</option>
+          <option>School / Institution</option><option>Export</option><option>Other</option>
+        </select></div>
+      <div class="ff"><label class="fl">Milk Volume/Day (L)</label><input class="fi" type="number" id="cm-vol"></div>
+      <div class="ff"><label class="fl">Agreed Price/L</label><input class="fi" type="number" id="cm-price" step="0.01"></div>
+      <div class="ff" style="grid-column:1/-1;"><label class="fl">Supply Agreement Notes</label><textarea class="fi" id="cm-notes" rows="2"></textarea></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeModal('custModal')">Cancel</button>
+      <button class="btn btn-forest" onclick="saveCustomer()">Save Customer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div id="topBar" style="display:none;">
+  <div class="tb-brand">
+    <div class="tb-icon">&#x1F95B;</div>
+    <div>
+      <div class="tb-name">TAEM DAIRY</div>
+      <div class="tb-ver">v2.26 &middot; Suwani Nexus Hub</div>
+    </div>
+  </div>
+  <input class="tb-farm-input" id="farmNameInp" placeholder="Farm Name" oninput="saveFarmName()">
+  <div class="tb-spacer"></div>
+  <div class="tb-date" id="tbDate"></div>
+  <select class="tb-curr" id="currSel" onchange="setCurr(this.value)">
+    <option value="USD">USD ($)</option><option value="ZAR" selected>ZAR (R)</option>
+    <option value="SZL">SZL (E)</option><option value="ZMW">ZMW (K)</option>
+    <option value="BWP">BWP (P)</option><option value="NAD">NAD (N$)</option>
+    <option value="LSL">LSL (L)</option><option value="ZWL">ZWL (Z$)</option>
+  </select>
+  <button class="tb-btn" onclick="showPage('pg-license')">License</button>
+  <button class="tb-btn" onclick="openModal('aboutModal')">About</button>
+  <button class="tb-btn red" onclick="doLock()">Lock</button>
+</div>
+<div id="licBanner" style="display:none;">
+  Trial mode &mdash; <strong id="trialTxt">30 days remaining</strong>
+  &nbsp;&middot;&nbsp; taemsoftware@gmail.com
+  <button class="lic-act" onclick="openModal('licModal')">Activate License</button>
+</div>
+
+<!-- ═══════════════ APP SHELL ═══════════════ -->
+<div id="appShell" style="display:none;">
+<nav id="sidebar">
+<div class="nav-sect"><div class="nav-lbl">Overview</div>
+<div class="nav-item on" data-pg="pg-dash" onclick="showPage('pg-dash')"><span class="nav-ic">📊</span>Dashboard</div>
+</div>
+<div class="nav-div"></div>
+<div class="nav-sect"><div class="nav-lbl">Data Management</div>
+<div class="nav-item" data-pg="pg-animals" onclick="showPage('pg-animals')"><span class="nav-ic">🐄</span>Animal Records</div>
+<div class="nav-item" data-pg="pg-milk" onclick="showPage('pg-milk')"><span class="nav-ic">🥛</span>Milk Production</div>
+<div class="nav-item" data-pg="pg-health" onclick="showPage('pg-health')"><span class="nav-ic">💊</span>Herd Health</div>
+<div class="nav-item" data-pg="pg-repro" onclick="showPage('pg-repro')"><span class="nav-ic">🔬</span>Reproduction</div>
+<div class="nav-item" data-pg="pg-feed" onclick="showPage('pg-feed')"><span class="nav-ic">🌾</span>Feed & Nutrition</div>
+<div class="nav-item" data-pg="pg-labor" onclick="showPage('pg-labor')"><span class="nav-ic">👷</span>Labour & Tasks</div>
+<div class="nav-item" data-pg="pg-inventory" onclick="showPage('pg-inventory')"><span class="nav-ic">📦</span>Inventory</div>
+</div>
+<div class="nav-div"></div>
+<div class="nav-sect"><div class="nav-lbl">Business Reporting</div>
+<div class="nav-item" data-pg="pg-finance" onclick="showPage('pg-finance')"><span class="nav-ic">💰</span>Income & Expenses</div>
+<div class="nav-item" data-pg="pg-networth" onclick="showPage('pg-networth')"><span class="nav-ic">⚖️</span>Net Worth</div>
+<div class="nav-item" data-pg="pg-cashflow" onclick="showPage('pg-cashflow')"><span class="nav-ic">💸</span>Cash Flow</div>
+<div class="nav-item" data-pg="pg-compliance" onclick="showPage('pg-compliance')"><span class="nav-ic">📋</span>Compliance & Trace</div>
+</div>
+<div class="nav-div"></div>
+<div class="nav-sect"><div class="nav-lbl">Decision Support</div>
+<div class="nav-item" data-pg="pg-analytics" onclick="showPage('pg-analytics')"><span class="nav-ic">📈</span>Analytics & KPIs</div>
+<div class="nav-item" data-pg="pg-dss" onclick="showPage('pg-dss')"><span class="nav-ic">🧠</span>Decision Support</div>
+</div>
+<div class="nav-div"></div>
+<div class="nav-sect"><div class="nav-lbl">Directory</div>
+<div class="nav-item" data-pg="pg-suppliers" onclick="showPage('pg-suppliers')"><span class="nav-ic">🏭</span>Suppliers</div>
+<div class="nav-item" data-pg="pg-customers" onclick="showPage('pg-customers')"><span class="nav-ic">🤝</span>Customers</div>
+</div>
+<div class="nav-div"></div>
+<div class="nav-sect"><div class="nav-lbl">System</div>
+<div class="nav-item" data-pg="pg-reports" onclick="showPage('pg-reports')"><span class="nav-ic">🖨️</span>Reports</div>
+<div class="nav-item" data-pg="pg-license" onclick="showPage('pg-license')"><span class="nav-ic">🔑</span>License</div>
+<div class="nav-item" data-pg="pg-settings" onclick="showPage('pg-settings')"><span class="nav-ic">⚙️</span>Settings</div>
+</div>
+</nav>
+<main id="mainArea">
+<div id="pg-dash" class="page on">
+<div class="pg-head">
+  <div>
+    <div class="pg-title">Dashboard</div>
+    <div class="pg-sub" id="dashSub">Dairy enterprise overview — <span id="dashFarm">Your Farm</span></div>
+  </div>
+</div>
+<div class="pg-rule"></div>
+
+<div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center;">
+  <span style="font-family:var(--fd);font-size:.72rem;color:var(--text-muted);margin-right:4px;">Notifications:</span>
+  <button class="btn btn-forest btn-sm" onclick="filterNotifs('all')">All</button>
+  <button class="btn btn-danger btn-sm" onclick="filterNotifs('overdue')">Overdue</button>
+  <button class="btn btn-outline btn-sm" onclick="filterNotifs('today')">Today</button>
+  <button class="btn btn-outline btn-sm" onclick="filterNotifs('week')">This Week</button>
+  <button class="btn btn-outline btn-sm" onclick="filterNotifs('month')">This Month</button>
+</div>
+<div id="notifPanel" style="margin-bottom:18px;"></div>
+
+<div class="kpi-strip">
+  <div class="kpi"><div class="kpi-lbl">Total Animals</div><div class="kpi-val" id="kHerd">—</div><div class="kpi-hint">In herd register</div></div>
+  <div class="kpi"><div class="kpi-lbl">Milking Cows</div><div class="kpi-val ocean" id="kMilking">—</div><div class="kpi-hint">Lactating today</div></div>
+  <div class="kpi"><div class="kpi-lbl">Today's Yield</div><div class="kpi-val gold" id="kYield">—</div><div class="kpi-hint">Litres collected</div></div>
+  <div class="kpi"><div class="kpi-lbl">Avg Fat %</div><div class="kpi-val" id="kFat">—</div><div class="kpi-hint">Target ≥ 3.5%</div></div>
+  <div class="kpi"><div class="kpi-lbl">Bulk SCC</div><div class="kpi-val" id="kSCC">—</div><div class="kpi-hint">×1000 cells/ml</div></div>
+  <div class="kpi"><div class="kpi-lbl">Conception Rate</div><div class="kpi-val" id="kCR">—</div><div class="kpi-hint">Target ≥ 50%</div></div>
+  <div class="kpi"><div class="kpi-lbl">Net Income</div><div class="kpi-val gold" id="kNI">—</div><div class="kpi-hint">This period</div></div>
+  <div class="kpi"><div class="kpi-lbl">Cost / Litre</div><div class="kpi-val" id="kCPL">—</div><div class="kpi-hint">Feed + labour cost</div></div>
+</div>
+
+<div class="two-col">
+  <div class="card">
+    <div class="card-t"><span class="ic">🥛</span>Milk Yield — 7-Day Trend</div>
+    <div class="mini-chart" id="milkChart"></div>
+    <div style="display:flex;gap:16px;margin-top:8px;font-size:.68rem;color:var(--text-dim);">
+      <span><span style="display:inline-block;width:10px;height:10px;background:var(--sage);border-radius:2px;margin-right:3px;"></span>AM</span>
+      <span><span style="display:inline-block;width:10px;height:10px;background:var(--gilt);border-radius:2px;margin-right:3px;"></span>PM</span>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="margin-bottom:14px;">
+      <div class="card-t"><span class="ic">🐄</span>Herd Status</div>
+      <div id="herdStatusPanel"></div>
+    </div>
+    <div class="card">
+      <div class="card-t"><span class="ic">⚡</span>Urgent Actions</div>
+      <div id="urgentPanel"></div>
+    </div>
+  </div>
+</div>
+</div>
+<div id="pg-animals" class="page">
+<div class="pg-head"><div class="pg-title">Animal Identification & Records</div></div>
+<div class="pg-sub">Complete herd register — ear tags, RFID, pedigree, lifecycle management</div>
+<div class="pg-rule"></div>
+<div class="tabs" id="anTabs">
+  <div class="tab on" onclick="swTab(this,'at-reg')">Herd Register</div>
+  <div class="tab" onclick="swTab(this,'at-mov')">Movements</div>
+  <div class="tab" onclick="swTab(this,'at-ped')">Pedigree</div>
+</div>
+
+<div id="at-reg" class="tab-pane on">
+  <div class="btn-row" style="margin-bottom:12px;">
+    <button class="btn btn-forest" onclick="openAddAnimal()">➕ Register Animal</button>
+    <button class="btn btn-gold" onclick="exportCSV('animalTable','herd_register')">⬇ Export CSV</button>
+    <button class="btn btn-outline" onclick="window.print()">🖨️ Print</button>
+    <div class="search-w" style="margin-left:auto;">
+      <span class="search-ic">🔍</span>
+      <input class="search-inp" placeholder="Search ID, name, breed…" oninput="searchTbl('animalTable',this.value)">
+    </div>
+  </div>
+  <div class="tbl-wrap">
+    <table class="data" id="animalTable">
+      <thead><tr>
+        <th>Animal ID</th><th>Name</th><th>RFID/Barcode</th><th>Breed</th><th>DOB</th>
+        <th>Age</th><th>Sex</th><th>Parity</th><th>Stage</th>
+        <th>Sire ID</th><th>Dam ID</th><th>Acq. Date</th><th>Source</th><th>Status</th><th>Notes</th><th>Action</th>
+      </tr></thead>
+      <tbody id="animalBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div id="at-mov" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;">
+    <button class="btn btn-forest" onclick="addTR('movBody',movRowTpl)">➕ Add Movement</button>
+    <button class="btn btn-gold" onclick="exportCSV('movTable','movements')">⬇ CSV</button>
+  </div>
+  <div class="tbl-wrap">
+    <table class="data" id="movTable">
+      <thead><tr><th>Animal ID</th><th>Date</th><th>Movement Type</th><th>From</th><th>To</th><th>Reason</th><th>Value</th><th>Witnessed By</th><th>Notes</th><th></th></tr></thead>
+      <tbody id="movBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div id="at-ped" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('pedBody',pedRowTpl)">➕ Add Pedigree</button></div>
+  <div class="tbl-wrap">
+    <table class="data" id="pedTable">
+      <thead><tr><th>Animal ID</th><th>Sire</th><th>Dam</th><th>Grandsire (Pat.)</th><th>Grandam (Pat.)</th><th>Breed Composition</th><th>Registration No.</th><th>Stud</th><th>Notes</th><th></th></tr></thead>
+      <tbody id="pedBody"></tbody>
+    </table>
+  </div>
+</div>
+</div>
+<div id="pg-milk" class="page">
+<div class="pg-head"><div class="pg-title">Milk Production Management</div></div>
+<div class="pg-sub">Daily yield recording · quality parameters · lactation curves · parlour management</div>
+<div class="pg-rule"></div>
+<div class="tabs">
+  <div class="tab on" onclick="swTab(this,'mt-daily')">Daily Recording</div>
+  <div class="tab" onclick="swTab(this,'mt-qual')">Milk Quality</div>
+  <div class="tab" onclick="swTab(this,'mt-lac')">Lactation Curves</div>
+  <div class="tab" onclick="swTab(this,'mt-bulk')">Bulk Tank</div>
+  <div class="tab" onclick="swTab(this,'mt-parlour')">Parlour Config</div>
+</div>
+
+<div id="mt-daily" class="tab-pane on">
+  <div class="card">
+    <div class="card-t"><span class="ic">📝</span>Session Entry</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Date<span class="req">*</span></label><input class="fi" type="date" id="milkDate"></div>
+      <div class="ff"><label class="fl">Session</label>
+        <select class="fi" id="milkSession"><option>Morning (AM)</option><option>Afternoon (PM)</option><option>Evening</option><option>Total Combined</option></select></div>
+      <div class="ff"><label class="fl">Milking Method</label>
+        <select class="fi"><option>Mechanical Parlour</option><option>Bucket Milking</option><option>Hand Milking</option><option>Robotic (AMS)</option></select></div>
+    </div>
+  </div>
+  <div class="btn-row" style="margin-bottom:12px;">
+    <button class="btn btn-forest" onclick="addMilkRow()">➕ Add Cow Entry</button>
+    <button class="btn btn-gold" onclick="exportCSV('milkTable','milk_production')">⬇ Export CSV</button>
+    <button class="btn btn-outline" onclick="window.print()">🖨️ Print</button>
+  </div>
+  <div class="tbl-wrap">
+    <table class="data" id="milkTable">
+      <thead><tr><th>Animal ID</th><th>Parity</th><th>DIM</th><th>AM (L)</th><th>PM (L)</th><th>Total (L)</th><th>Fat %</th><th>Protein %</th><th>SCC (×1000)</th><th>Lactose %</th><th>Temp (°C)</th><th>Abnormality</th><th>Milked By</th><th></th></tr></thead>
+      <tbody id="milkBody"></tbody>
+      <tfoot><tr class="tot-row"><td colspan="3">TOTAL / AVERAGE</td><td class="num" id="mAM">0</td><td class="num" id="mPM">0</td><td class="num" id="mTot">0</td><td class="num" id="mFat">—</td><td class="num" id="mProt">—</td><td class="num" id="mSCC">—</td><td colspan="5"></td></tr></tfoot>
+    </table>
+  </div>
+</div>
+
+<div id="mt-qual" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('mqBody',mqRowTpl)">➕ Add Quality Test</button></div>
+  <div class="tbl-wrap">
+    <table class="data" id="mqTable">
+      <thead><tr><th>Test Date</th><th>Source</th><th>Animal/Tank ID</th><th>Fat %</th><th>Protein %</th><th>Lactose %</th><th>SNF %</th><th>SCC (×1000)</th><th>TBC (×1000)</th><th>pH</th><th>Temp (°C)</th><th>Antibiotic</th><th>Adulteration</th><th>Result</th><th>Lab/Tester</th><th></th></tr></thead>
+      <tbody id="mqBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div id="mt-lac" class="tab-pane">
+  <div class="card">
+    <div class="card-t"><span class="ic">📈</span>Lactation Record</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Animal ID</label><input class="fi" placeholder="Enter ID"></div>
+      <div class="ff"><label class="fl">Lactation No.</label><select class="fi"><option>1st</option><option>2nd</option><option>3rd</option><option>4th</option><option>5th+</option></select></div>
+      <div class="ff"><label class="fl">Calving Date</label><input class="fi" type="date"></div>
+      <div class="ff"><label class="fl">Dry-Off Date</label><input class="fi" type="date"></div>
+    </div>
+  </div>
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('lacBody',lacRowTpl)">➕ Add Weekly Record</button></div>
+  <div class="tbl-wrap">
+    <table class="data" id="lacTable">
+      <thead><tr><th>Animal ID</th><th>Lactation No.</th><th>Week (DIM)</th><th>Avg Daily Yield (L)</th><th>Cumulative (L)</th><th>Peak Yield (L)</th><th>Peak DIM</th><th>Fat %</th><th>Protein %</th><th>SCC</th><th>Persistency %</th><th>Status</th><th></th></tr></thead>
+      <tbody id="lacBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div id="mt-bulk" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('bulkBody',bulkRowTpl)">➕ Add Bulk Record</button></div>
+  <div class="tbl-wrap">
+    <table class="data" id="bulkTable">
+      <thead><tr><th>Date</th><th>Tank ID</th><th>Opening Vol (L)</th><th>AM Added (L)</th><th>PM Added (L)</th><th>Milk Sold (L)</th><th>Rejected (L)</th><th>On-Farm Use (L)</th><th>Closing Vol (L)</th><th>Temp (°C)</th><th>Sold To</th><th>Price/L</th><th>Revenue</th><th></th></tr></thead>
+      <tbody id="bulkBody"></tbody>
+      <tfoot><tr class="tot-row"><td colspan="12">TOTAL REVENUE</td><td class="num" id="bulkRev">0</td><td></td></tr></tfoot>
+    </table>
+  </div>
+</div>
+
+<div id="mt-parlour" class="tab-pane">
+  <div class="card">
+    <div class="card-t"><span class="ic">🏗️</span>Parlour Configuration & Log</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Parlour Type</label><select class="fi"><option>Herringbone</option><option>Parallel</option><option>Rotary</option><option>Tie-Stall</option><option>Bucket-to-Pipeline</option><option>Robotic (AMS)</option></select></div>
+      <div class="ff"><label class="fl">Capacity (Stalls)</label><input class="fi" type="number" min="1"></div>
+      <div class="ff"><label class="fl">Milking Frequency</label><select class="fi"><option>1x Daily</option><option>2x Daily</option><option>3x Daily</option><option>Variable (Robot)</option></select></div>
+      <div class="ff"><label class="fl">AM Start Time</label><input class="fi" type="time"></div>
+      <div class="ff"><label class="fl">PM Start Time</label><input class="fi" type="time"></div>
+      <div class="ff"><label class="fl">Cooling System</label><select class="fi"><option>Plate Cooler</option><option>Vat Cooler</option><option>Refrigerated Tanker</option><option>None</option></select></div>
+    </div>
+    <button class="btn btn-forest" onclick="toast('✅ Parlour config saved')">💾 Save Config</button>
+  </div>
+</div>
+</div>
+<div id="pg-health" class="page">
+<div class="pg-head"><div class="pg-title">Herd Health Management</div></div>
+<div class="pg-sub">Vaccinations · treatments · drug register · veterinary records · withdrawal periods</div>
+<div class="pg-rule"></div>
+<div class="tabs">
+  <div class="tab on" onclick="swTab(this,'ht-vacc')">Vaccinations</div>
+  <div class="tab" onclick="swTab(this,'ht-treat')">Treatments</div>
+  <div class="tab" onclick="swTab(this,'ht-dis')">Disease Records</div>
+  <div class="tab" onclick="swTab(this,'ht-drug')">Drug Register</div>
+  <div class="tab" onclick="swTab(this,'ht-vet')">Vet Visits</div>
+</div>
+<div id="ht-vacc" class="tab-pane on">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('vaccBody',vaccRowTpl)">➕ Add Vaccination</button><button class="btn btn-gold" onclick="exportCSV('vaccTable','vaccinations')">⬇ CSV</button></div>
+  <div class="tbl-wrap"><table class="data" id="vaccTable">
+    <thead><tr><th>Animal ID/Group</th><th>Vaccine</th><th>Disease Target</th><th>Dose (ml)</th><th>Route</th><th>Date Given</th><th>Next Due</th><th>Batch No.</th><th>Manufacturer</th><th>Given By</th><th>Cost</th><th>Status</th><th></th></tr></thead>
+    <tbody id="vaccBody"></tbody>
+  </table></div>
+</div>
+<div id="ht-treat" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('treatBody',treatRowTpl)">➕ Add Treatment</button><button class="btn btn-gold" onclick="exportCSV('treatTable','treatments')">⬇ CSV</button></div>
+  <div class="tbl-wrap"><table class="data" id="treatTable">
+    <thead><tr><th>Animal ID</th><th>Date</th><th>Condition</th><th>Drug Used</th><th>Dose</th><th>Route</th><th>Duration (days)</th><th>Milk W/H (days)</th><th>Meat W/H (days)</th><th>Milk Withhold End</th><th>Treated By</th><th>Cost</th><th>Outcome</th><th></th></tr></thead>
+    <tbody id="treatBody"></tbody>
+  </table></div>
+</div>
+<div id="ht-dis" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('disBody',disRowTpl)">➕ Add Record</button></div>
+  <div class="tbl-wrap"><table class="data" id="disTable">
+    <thead><tr><th>Animal ID</th><th>Date</th><th>Disease/Condition</th><th>Body System</th><th>Severity</th><th>Contagious?</th><th>No. Affected</th><th>Notifiable?</th><th>Date Resolved</th><th>Outcome</th><th>Losses (Value)</th><th></th></tr></thead>
+    <tbody id="disBody"></tbody>
+  </table></div>
+</div>
+<div id="ht-drug" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('drugBody',drugRowTpl)">➕ Add Drug</button></div>
+  <div class="tbl-wrap"><table class="data" id="drugTable">
+    <thead><tr><th>Drug Name</th><th>Category</th><th>Active Ingredient</th><th>Manufacturer</th><th>Expiry Date</th><th>Qty in Stock</th><th>Unit</th><th>Milk W/H (days)</th><th>Meat W/H (days)</th><th>Storage</th><th>Cost/Unit</th><th>Prescription?</th><th></th></tr></thead>
+    <tbody id="drugBody"></tbody>
+  </table></div>
+</div>
+<div id="ht-vet" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('vetBody',vetRowTpl)">➕ Add Vet Visit</button></div>
+  <div class="tbl-wrap"><table class="data" id="vetTable">
+    <thead><tr><th>Date</th><th>Vet Name</th><th>Practice</th><th>Purpose</th><th>Animals Examined</th><th>Findings</th><th>Prescriptions</th><th>Follow-up Required</th><th>Follow-up Date</th><th>Cost</th><th>Invoice No.</th><th></th></tr></thead>
+    <tbody id="vetBody"></tbody>
+  </table></div>
+</div>
+</div>
+<div id="pg-repro" class="page">
+<div class="pg-head"><div class="pg-title">Reproduction & Breeding Management</div></div>
+<div class="pg-sub">Heat detection · AI records · pregnancy diagnosis · calving · fertility KPIs</div>
+<div class="pg-rule"></div>
+<div class="tabs">
+  <div class="tab on" onclick="swTab(this,'rt-heat')">Heat Detection</div>
+  <div class="tab" onclick="swTab(this,'rt-ai')">AI / Natural Service</div>
+  <div class="tab" onclick="swTab(this,'rt-pd')">Pregnancy Diagnosis</div>
+  <div class="tab" onclick="swTab(this,'rt-calv')">Calving Records</div>
+  <div class="tab" onclick="swTab(this,'rt-kpi')">Fertility KPIs</div>
+</div>
+<div id="rt-heat" class="tab-pane on">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('heatBody',heatRowTpl)">➕ Record Heat</button></div>
+  <div class="tbl-wrap"><table class="data" id="heatTable">
+    <thead><tr><th>Animal ID</th><th>Date</th><th>Time</th><th>Detection Method</th><th>Intensity</th><th>Prev. Heat Date</th><th>Interval (days)</th><th>Action Taken</th><th>Detected By</th><th></th></tr></thead>
+    <tbody id="heatBody"></tbody>
+  </table></div>
+</div>
+<div id="rt-ai" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('aiBody',aiRowTpl)">➕ Add Service Record</button><button class="btn btn-gold" onclick="exportCSV('aiTable','breeding')">⬇ CSV</button></div>
+  <div class="tbl-wrap"><table class="data" id="aiTable">
+    <thead><tr><th>Animal ID</th><th>Date</th><th>Service Type</th><th>Bull/Semen Code</th><th>Sire Breed</th><th>Batch No.</th><th>Synchronisation?</th><th>Protocol</th><th>Inseminator</th><th>Semen Cost</th><th>Expected Calving</th><th>Service No.</th><th></th></tr></thead>
+    <tbody id="aiBody"></tbody>
+  </table></div>
+</div>
+<div id="rt-pd" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('pdBody',pregRowTpl)">➕ Add PD Record</button></div>
+  <div class="tbl-wrap"><table class="data" id="pdTable">
+    <thead><tr><th>Animal ID</th><th>PD Date</th><th>Method</th><th>Days Post-Service</th><th>Result</th><th>Foetal Age (days)</th><th>Foetal Sex</th><th>Twins?</th><th>Expected Calving</th><th>Dry-Off Date</th><th>PD By</th><th>Cost</th><th></th></tr></thead>
+    <tbody id="pdBody"></tbody>
+  </table></div>
+</div>
+<div id="rt-calv" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('calvBody',calvRowTpl)">➕ Record Calving</button></div>
+  <div class="tbl-wrap"><table class="data" id="calvTable">
+    <thead><tr><th>Dam ID</th><th>Calving Date</th><th>Ease Score</th><th>Assistance</th><th>Calf ID</th><th>Calf Sex</th><th>Birth Wt (kg)</th><th>Calf Breed</th><th>Live/Dead</th><th>Colostrum Given?</th><th>Retained Placenta?</th><th>Dam Condition</th><th>Calving Interval (days)</th><th>Attendant</th><th></th></tr></thead>
+    <tbody id="calvBody"></tbody>
+  </table></div>
+</div>
+<div id="rt-kpi" class="tab-pane">
+  <div class="card">
+    <div class="card-t"><span class="ic">📊</span>Fertility Performance Indicators</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Period</label><select class="fi"><option>Last 12 months</option><option>Last 6 months</option><option>This Year</option><option>Last Year</option></select></div>
+      <div class="ff"><label class="fl">Eligible Cows</label><input class="fi" type="number" id="rElig" value="0" oninput="calcRepro()"></div>
+      <div class="ff"><label class="fl">Cows Served</label><input class="fi" type="number" id="rServed" value="0" oninput="calcRepro()"></div>
+      <div class="ff"><label class="fl">Confirmed Pregnant</label><input class="fi" type="number" id="rPreg" value="0" oninput="calcRepro()"></div>
+      <div class="ff"><label class="fl">Calvings</label><input class="fi" type="number" id="rCalv" value="0" oninput="calcRepro()"></div>
+      <div class="ff"><label class="fl">AI Straws Used</label><input class="fi" type="number" id="rStraws" value="0" oninput="calcRepro()"></div>
+    </div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Submission Rate</label><div class="fi" id="rSub" style="background:var(--parch);">—</div></div>
+      <div class="ff"><label class="fl">Conception Rate (1st Service)</label><div class="fi" id="rConc" style="background:var(--parch);">—</div></div>
+      <div class="ff"><label class="fl">Pregnancy Rate</label><div class="fi" id="rPR" style="background:var(--parch);">—</div></div>
+      <div class="ff"><label class="fl">Services per Conception</label><div class="fi" id="rSPC" style="background:var(--parch);">—</div></div>
+      <div class="ff"><label class="fl">Calving Rate</label><div class="fi" id="rCR" style="background:var(--parch);">—</div></div>
+    </div>
+  </div>
+</div>
+</div>
+<div id="pg-feed" class="page">
+<div class="pg-head"><div class="pg-title">Feed & Nutrition Management</div></div>
+<div class="pg-sub">Ration formulation · feed inventory · cost analysis · nutritional performance</div>
+<div class="pg-rule"></div>
+<div class="tabs">
+  <div class="tab on" onclick="swTab(this,'ft-ration')">Rations</div>
+  <div class="tab" onclick="swTab(this,'ft-intake')">Feed Intake</div>
+  <div class="tab" onclick="swTab(this,'ft-stock')">Feed Inventory</div>
+  <div class="tab" onclick="swTab(this,'ft-cost')">Cost Analysis</div>
+</div>
+<div id="ft-ration" class="tab-pane on">
+  <div class="card">
+    <div class="card-t"><span class="ic">🧮</span>Ration Builder</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Ration Name</label><input class="fi" placeholder="e.g. High Production TMR"></div>
+      <div class="ff"><label class="fl">Target Group</label><select class="fi"><option>Fresh Cows (0–30 DIM)</option><option>Peak Production (30–120 DIM)</option><option>Mid Lactation (120–200 DIM)</option><option>Late Lactation (200+ DIM)</option><option>Dry Period – Far-off</option><option>Dry Period – Close-up (Transition)</option><option>Heifers (Pre-calving)</option><option>Calves (0–3 months)</option><option>Weaners (3–6 months)</option></select></div>
+      <div class="ff"><label class="fl">Target Yield (L/day)</label><input class="fi" type="number"></div>
+      <div class="ff"><label class="fl">Feeding System</label><select class="fi"><option>Total Mixed Ration (TMR)</option><option>Partial Mixed Ration (PMR)</option><option>Component Feeding</option><option>Pasture + Supplement</option><option>Zero Grazing</option></select></div>
+    </div>
+  </div>
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('rationBody',rationRowTpl)">➕ Add Ingredient</button></div>
+  <div class="tbl-wrap"><table class="data" id="rationTable">
+    <thead><tr><th>Feed Ingredient</th><th>Category</th><th>DM %</th><th>CP %</th><th>ME (MJ/kg)</th><th>NDF %</th><th>Ca %</th><th>Inclusion (kg/cow/day)</th><th>DM Inclusion (kg)</th><th>Cost/kg</th><th>Cost/Cow/Day</th><th></th></tr></thead>
+    <tbody id="rationBody"></tbody>
+    <tfoot><tr class="tot-row"><td colspan="7">TOTAL</td><td class="num" id="rTotKg">0</td><td class="num" id="rTotDM">0</td><td></td><td class="num" id="rTotCost">0</td><td></td></tr></tfoot>
+  </table></div>
+</div>
+<div id="ft-intake" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('intBody',intakeRowTpl)">➕ Record Intake</button></div>
+  <div class="tbl-wrap"><table class="data" id="intTable">
+    <thead><tr><th>Date</th><th>Group/Animal</th><th>Feed Offered (kg)</th><th>Refusals (kg)</th><th>Actual Intake (kg)</th><th>DM Intake (kg)</th><th>Feed Type</th><th>Session</th><th>Avg Milk Yield (L)</th><th>FCE</th><th>Recorded By</th><th></th></tr></thead>
+    <tbody id="intBody"></tbody>
+  </table></div>
+</div>
+<div id="ft-stock" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('fsBody',feedStockRowTpl)">➕ Add Feed Item</button><button class="btn btn-gold" onclick="exportCSV('fsTable','feed_stock')">⬇ CSV</button></div>
+  <div class="tbl-wrap"><table class="data" id="fsTable">
+    <thead><tr><th>Feed Type</th><th>Category</th><th>Description</th><th>Unit</th><th>Opening Stock</th><th>Received</th><th>Used</th><th>Waste/Loss</th><th>Closing Stock</th><th>Re-order Level</th><th>Supplier</th><th>Cost/Unit</th><th>Total Value</th><th></th></tr></thead>
+    <tbody id="fsBody"></tbody>
+    <tfoot><tr class="tot-row"><td colspan="12">TOTAL VALUE</td><td class="num" id="fsTot">0</td><td></td></tr></tfoot>
+  </table></div>
+</div>
+<div id="ft-cost" class="tab-pane">
+  <div class="card">
+    <div class="card-t"><span class="ic">💰</span>Feed Cost Calculator</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Total Feed Cost</label><input class="fi" type="number" id="fcTot" value="0" oninput="calcFeedCost()"></div>
+      <div class="ff"><label class="fl">Total Milk Produced (L)</label><input class="fi" type="number" id="fcMilk" value="0" oninput="calcFeedCost()"></div>
+      <div class="ff"><label class="fl">Avg Milking Cows</label><input class="fi" type="number" id="fcCows" value="0" oninput="calcFeedCost()"></div>
+      <div class="ff"><label class="fl">Days in Period</label><input class="fi" type="number" id="fcDays" value="30" oninput="calcFeedCost()"></div>
+    </div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Cost per Litre</label><div class="fi" id="fcCPL" style="background:var(--parch);">—</div></div>
+      <div class="ff"><label class="fl">Cost per Cow per Day</label><div class="fi" id="fcCPCD" style="background:var(--parch);">—</div></div>
+      <div class="ff"><label class="fl">Feed Cost % of Revenue</label><div class="fi" id="fcPct" style="background:var(--parch);">—</div></div>
+    </div>
+  </div>
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('fcrBody',feedCostRowTpl)">➕ Add Purchase</button></div>
+  <div class="tbl-wrap"><table class="data" id="fcrTable">
+    <thead><tr><th>Date</th><th>Feed Type</th><th>Supplier</th><th>Quantity</th><th>Unit</th><th>Price/Unit</th><th>Total Cost</th><th>Invoice No.</th><th>Status</th><th></th></tr></thead>
+    <tbody id="fcrBody"></tbody>
+    <tfoot><tr class="tot-row"><td colspan="6">TOTAL</td><td class="num" id="fcrTot">0</td><td colspan="3"></td></tr></tfoot>
+  </table></div>
+</div>
+</div>
+<div id="pg-labor" class="page">
+<div class="pg-head"><div class="pg-title">Labour & Task Management</div></div>
+<div class="pg-sub">Employee records · task scheduling · shifts · attendance · payroll support</div>
+<div class="pg-rule"></div>
+<div class="tabs">
+  <div class="tab on" onclick="swTab(this,'lt-staff')">Staff Records</div>
+  <div class="tab" onclick="swTab(this,'lt-tasks')">Task Schedule</div>
+  <div class="tab" onclick="swTab(this,'lt-shift')">Shifts & Attendance</div>
+  <div class="tab" onclick="swTab(this,'lt-pay')">Payroll</div>
+</div>
+<div id="lt-staff" class="tab-pane on">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('staffBody',staffRowTpl)">➕ Add Employee</button><button class="btn btn-gold" onclick="exportCSV('staffTable','staff')">⬇ CSV</button></div>
+  <div class="tbl-wrap"><table class="data" id="staffTable">
+    <thead><tr><th>Employee ID</th><th>Full Name</th><th>Role</th><th>Phone</th><th>Start Date</th><th>Contract</th><th>Shift</th><th>Daily Rate</th><th>Monthly Salary</th><th>Status</th><th></th></tr></thead>
+    <tbody id="staffBody"></tbody>
+  </table></div>
+</div>
+<div id="lt-tasks" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('taskBody',taskRowTpl)">➕ Add Task</button></div>
+  <div class="tbl-wrap"><table class="data" id="taskTable">
+    <thead><tr><th>Task</th><th>Category</th><th>Frequency</th><th>Time</th><th>Assigned To</th><th>Due Date</th><th>Priority</th><th>Status</th><th>Completed By</th><th></th></tr></thead>
+    <tbody id="taskBody"></tbody>
+  </table></div>
+</div>
+<div id="lt-shift" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('shiftBody',shiftRowTpl)">➕ Log Attendance</button></div>
+  <div class="tbl-wrap"><table class="data" id="shiftTable">
+    <thead><tr><th>Employee ID</th><th>Name</th><th>Date</th><th>Shift</th><th>Time In</th><th>Time Out</th><th>Hours</th><th>Overtime</th><th>Absence</th><th></th></tr></thead>
+    <tbody id="shiftBody"></tbody>
+  </table></div>
+</div>
+<div id="lt-pay" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('payBody',payRowTpl)">➕ Add Payroll</button></div>
+  <div class="tbl-wrap"><table class="data" id="payTable">
+    <thead><tr><th>Employee ID</th><th>Name</th><th>Month</th><th>Days Worked</th><th>Basic Pay</th><th>Overtime</th><th>Bonus</th><th>Deductions</th><th>Net Pay</th><th>Method</th><th>Pay Date</th><th></th></tr></thead>
+    <tbody id="payBody"></tbody>
+    <tfoot><tr class="tot-row"><td colspan="4">TOTAL</td><td class="num" id="payBasic">0</td><td class="num" id="payOT">0</td><td class="num" id="payBonus">0</td><td class="num" id="payDed">0</td><td class="num" id="payNet">0</td><td colspan="3"></td></tr></tfoot>
+  </table></div>
+</div>
+</div>
+<div id="pg-inventory" class="page">
+<div class="pg-head"><div class="pg-title">Inventory & Resource Management</div></div>
+<div class="pg-sub">Farm supplies · equipment register · medicines · storage tracking · low-stock alerts</div>
+<div class="pg-rule"></div>
+<div class="tabs">
+  <div class="tab on" onclick="swTab(this,'it-sup')">Farm Supplies</div>
+  <div class="tab" onclick="swTab(this,'it-equip')">Equipment</div>
+  <div class="tab" onclick="swTab(this,'it-med')">Medicine Stock</div>
+  <div class="tab" onclick="swTab(this,'it-stor')">Storage Log</div>
+</div>
+<div id="it-sup" class="tab-pane on">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('supBody',suppliesRowTpl)">➕ Add Item</button><button class="btn btn-gold" onclick="exportCSV('supTable','supplies')">⬇ CSV</button></div>
+  <div class="tbl-wrap"><table class="data" id="supTable">
+    <thead><tr><th>Item</th><th>Category</th><th>Unit</th><th>Current Stock</th><th>Re-order Level</th><th>Cost/Unit</th><th>Total Value</th><th>Supplier</th><th>Status</th><th></th></tr></thead>
+    <tbody id="supBody"></tbody>
+    <tfoot><tr class="tot-row"><td colspan="6">TOTAL VALUE</td><td class="num" id="supTot">0</td><td colspan="3"></td></tr></tfoot>
+  </table></div>
+</div>
+<div id="it-equip" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('equipBody',equipRowTpl)">➕ Add Equipment</button></div>
+  <div class="tbl-wrap"><table class="data" id="equipTable">
+    <thead><tr><th>Equip. ID</th><th>Description</th><th>Category</th><th>Serial No.</th><th>Purchase Date</th><th>Purchase Price</th><th>Current Value</th><th>Condition</th><th>Last Service</th><th>Next Service</th><th></th></tr></thead>
+    <tbody id="equipBody"></tbody>
+  </table></div>
+</div>
+<div id="it-med" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('medBody',drugRowTpl)">➕ Add Medicine</button></div>
+  <div class="tbl-wrap"><table class="data" id="medTable">
+    <thead><tr><th>Drug Name</th><th>Category</th><th>Active Ingredient</th><th>Manufacturer</th><th>Expiry Date</th><th>Qty in Stock</th><th>Unit</th><th>Milk W/H (days)</th><th>Meat W/H (days)</th><th>Storage</th><th>Cost/Unit</th><th>Prescription?</th><th></th></tr></thead>
+    <tbody id="medBody"></tbody>
+  </table></div>
+</div>
+<div id="it-stor" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('storBody',storRowTpl)">➕ Log Transaction</button></div>
+  <div class="tbl-wrap"><table class="data" id="storTable">
+    <thead><tr><th>Date</th><th>Item</th><th>Transaction</th><th>Quantity</th><th>Unit</th><th>Storage Location</th><th>Batch/Lot</th><th>Condition</th><th>Handled By</th><th>Notes</th><th></th></tr></thead>
+    <tbody id="storBody"></tbody>
+  </table></div>
+</div>
+</div>
+<div id="pg-finance" class="page">
+<div class="pg-head"><div class="pg-title">Income & Expenses</div></div>
+<div class="pg-sub">Financial performance · cost management · profitability analysis</div>
+<div class="pg-rule"></div>
+<div class="tabs">
+  <div class="tab on" onclick="swTab(this,'fin-inc')">Income</div>
+  <div class="tab" onclick="swTab(this,'fin-exp')">Expenses</div>
+  <div class="tab" onclick="swTab(this,'fin-sum')">Summary</div>
+</div>
+<div id="fin-inc" class="tab-pane on">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('incBody',incRowTpl)">➕ Add Income</button><button class="btn btn-gold" onclick="exportCSV('incTable','income')">⬇ CSV</button></div>
+  <div class="tbl-wrap"><table class="data" id="incTable">
+    <thead><tr><th>Date</th><th>Category</th><th>Description</th><th>Volume/Qty</th><th>Unit Price</th><th>Amount</th><th>Customer</th><th>Status</th><th></th></tr></thead>
+    <tbody id="incBody"></tbody>
+    <tfoot><tr class="tot-row"><td colspan="5">TOTAL INCOME</td><td class="num" id="incTot">0</td><td colspan="3"></td></tr></tfoot>
+  </table></div>
+</div>
+<div id="fin-exp" class="tab-pane">
+  <div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('expBody',expRowTpl)">➕ Add Expense</button><button class="btn btn-gold" onclick="exportCSV('expTable','expenses')">⬇ CSV</button></div>
+  <div class="tbl-wrap"><table class="data" id="expTable">
+    <thead><tr><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Supplier/Payee</th><th>Status</th><th></th></tr></thead>
+    <tbody id="expBody"></tbody>
+    <tfoot><tr class="tot-row"><td colspan="3">TOTAL EXPENSES</td><td class="num" id="expTot">0</td><td colspan="3"></td></tr></tfoot>
+  </table></div>
+</div>
+<div id="fin-sum" class="tab-pane">
+  <div class="card">
+    <div class="card-t"><span class="ic">📊</span>Profitability Summary</div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Milk Income</label><input class="fi" type="number" id="pMilk" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">Animal Sales</label><input class="fi" type="number" id="pAnim" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">Calf Sales</label><input class="fi" type="number" id="pCalf" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">Other Income</label><input class="fi" type="number" id="pOtherInc" value="0" oninput="calcProfit()"></div>
+    </div>
+    <div class="fg">
+      <div class="ff"><label class="fl">Feed Cost</label><input class="fi" type="number" id="pFeed" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">Labour Cost</label><input class="fi" type="number" id="pLabour" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">Vet & Health</label><input class="fi" type="number" id="pVet" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">AI & Reproduction</label><input class="fi" type="number" id="pAI" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">Utilities & Fuel</label><input class="fi" type="number" id="pUtil" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">Equipment & Maintenance</label><input class="fi" type="number" id="pEquip" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">Depreciation</label><input class="fi" type="number" id="pDepr" value="0" oninput="calcProfit()"></div>
+      <div class="ff"><label class="fl">Other Expenses</label><input class="fi" type="number" id="pOtherExp" value="0" oninput="calcProfit()"></div>
+    </div>
+    <div class="two-col" style="margin-top:16px;">
+      <div style="background:rgba(26,90,40,.07);border:1px solid rgba(26,90,40,.2);border-radius:var(--r2);padding:16px;">
+        <div style="font-size:.66rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;font-family:var(--fd);">Total Income</div>
+        <div style="font-family:var(--fd);font-size:1.6rem;font-weight:600;color:var(--success);" id="pTotInc">—</div>
+      </div>
+      <div style="background:rgba(139,42,26,.06);border:1px solid rgba(139,42,26,.2);border-radius:var(--r2);padding:16px;">
+        <div style="font-size:.66rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;font-family:var(--fd);">Total Expenses</div>
+        <div style="font-family:var(--fd);font-size:1.6rem;font-weight:600;color:var(--danger);" id="pTotExp">—</div>
+      </div>
+    </div>
+    <div style="background:rgba(30,77,110,.07);border:1px solid rgba(30,77,110,.2);border-radius:var(--r2);padding:16px;margin-top:12px;">
+      <div style="font-size:.66rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;font-family:var(--fd);">Net Profit / Loss</div>
+      <div style="font-family:var(--fd);font-size:2rem;font-weight:600;" id="pNet">—</div>
+      <div style="font-size:.76rem;color:var(--text-muted);margin-top:4px;font-style:italic;" id="pMargin">—</div>
+    </div>
+  </div>
+</div>
+</div>
+<div id="pg-networth" class="page"><div class="pg-head"><div class="pg-title">Net Worth Statement</div></div>
+<div class="pg-sub">Balance sheet as of <span id="nwDate"></span></div><div class="pg-rule"></div>
+<div class="btn-row" style="margin-bottom:16px;">
+<button class="btn btn-forest" onclick="calcNW()">Recalculate</button>
+<button class="btn btn-gold" onclick="exportNWCSV()">Export CSV</button>
+<button class="btn btn-outline" onclick="window.print()">Print</button></div>
+<div class="two-col">
+<div class="card"><div class="card-t">ASSETS</div>
+<div class="nw-cat">Current Assets</div>
+<div class="nw-row"><label>Cash on Hand &amp; Bank</label><input class="nw-inp" type="number" id="na-cash" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Milk Receivables</label><input class="nw-inp" type="number" id="na-milkr" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Feed Inventory</label><input class="nw-inp" type="number" id="na-feed" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Medicines &amp; Supplies</label><input class="nw-inp" type="number" id="na-meds" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Other Current Assets</label><input class="nw-inp" type="number" id="na-oca" value="0" oninput="calcNW()"></div>
+<div class="nw-row" style="font-weight:700;"><label>Total Current Assets</label><span id="na-tca" style="font-family:var(--fm);color:var(--gold);">0</span></div>
+<div class="nw-cat" style="margin-top:10px;">Intermediate Assets</div>
+<div class="nw-row"><label>Breeding Herd Value</label><input class="nw-inp" type="number" id="na-herd" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Milking Equipment</label><input class="nw-inp" type="number" id="na-equip" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Vehicles &amp; Tractors</label><input class="nw-inp" type="number" id="na-veh" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Other Intermediate</label><input class="nw-inp" type="number" id="na-oint" value="0" oninput="calcNW()"></div>
+<div class="nw-row" style="font-weight:700;"><label>Total Intermediate</label><span id="na-tia" style="font-family:var(--fm);color:var(--gold);">0</span></div>
+<div class="nw-cat" style="margin-top:10px;">Long-Term Assets</div>
+<div class="nw-row"><label>Land Value</label><input class="nw-inp" type="number" id="na-land" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Buildings &amp; Infrastructure</label><input class="nw-inp" type="number" id="na-bldg" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Other Long-Term</label><input class="nw-inp" type="number" id="na-olt" value="0" oninput="calcNW()"></div>
+<div class="nw-row" style="font-weight:700;border-top:2px solid var(--border2);padding-top:8px;">
+<label style="font-family:var(--fd);font-size:.95rem;color:var(--forest);">TOTAL ASSETS</label>
+<span id="na-tot" style="font-family:var(--fd);font-size:1.2rem;color:var(--forest);font-weight:600;">0</span>
+</div></div>
+<div class="card"><div class="card-t">LIABILITIES</div>
+<div class="nw-cat">Current Liabilities</div>
+<div class="nw-row"><label>Operating Loan</label><input class="nw-inp" type="number" id="nl-op" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Accounts Payable</label><input class="nw-inp" type="number" id="nl-ap" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Accrued Interest</label><input class="nw-inp" type="number" id="nl-int" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Other Current</label><input class="nw-inp" type="number" id="nl-ocl" value="0" oninput="calcNW()"></div>
+<div class="nw-row" style="font-weight:700;"><label>Total Current Liabilities</label><span id="nl-tcl" style="font-family:var(--fm);color:var(--danger);">0</span></div>
+<div class="nw-cat" style="margin-top:10px;">Term Liabilities</div>
+<div class="nw-row"><label>Intermediate Loans</label><input class="nw-inp" type="number" id="nl-il" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Long-Term Loans</label><input class="nw-inp" type="number" id="nl-ltl" value="0" oninput="calcNW()"></div>
+<div class="nw-row"><label>Hire Purchase</label><input class="nw-inp" type="number" id="nl-hp" value="0" oninput="calcNW()"></div>
+<div class="nw-row" style="font-weight:700;border-top:2px solid var(--border2);padding-top:8px;">
+<label style="font-family:var(--fd);font-size:.95rem;color:var(--danger);">TOTAL LIABILITIES</label>
+<span id="nl-tot" style="font-family:var(--fd);font-size:1.2rem;color:var(--danger);font-weight:600;">0</span></div>
+<div style="background:linear-gradient(135deg,rgba(26,47,14,.06),rgba(30,77,110,.05));border:1px solid var(--border2);border-radius:var(--r2);padding:16px;margin-top:16px;">
+<div style="font-family:var(--fd);font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px;">NET WORTH</div>
+<div style="font-family:var(--fd);font-size:2rem;font-weight:600;" id="nwVal">0</div>
+<div style="font-size:.72rem;color:var(--text-dim);margin-top:8px;font-style:italic;">I/We certify this statement is complete and accurate.</div>
+</div></div></div></div>
+<div id="pg-cashflow" class="page"><div class="pg-head"><div class="pg-title">Cash Flow Summary</div></div>
+<div class="pg-sub">Monthly cash flow projections and analysis</div><div class="pg-rule"></div>
+<div class="btn-row" style="margin-bottom:14px;">
+<button class="btn btn-forest" onclick="calcCF()">Recalculate</button>
+<button class="btn btn-gold" onclick="exportCSV('cfTable','cashflow')">Export CSV</button>
+<button class="btn btn-outline" onclick="window.print()">Print</button></div>
+<div class="tbl-wrap"><table class="data" id="cfTable">
+<thead><tr><th style="min-width:200px;">Item</th><th>TOTAL</th>
+<th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th>
+<th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th></tr></thead>
+<tbody id="cfBody"></tbody></table></div></div>
+<div id="pg-compliance" class="page"><div class="pg-head"><div class="pg-title">Compliance &amp; Traceability</div></div>
+<div class="pg-sub">Regulatory records, traceability, certifications and audit trail</div><div class="pg-rule"></div>
+<div class="tabs">
+<div class="tab on" onclick="swTab(this,'ct-reg')">Regulatory</div>
+<div class="tab" onclick="swTab(this,'ct-trace')">Traceability</div>
+<div class="tab" onclick="swTab(this,'ct-cert')">Certifications</div>
+<div class="tab" onclick="swTab(this,'ct-audit')">Audit Log</div></div>
+<div id="ct-reg" class="tab-pane on">
+<div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('regBody',regRowTpl)">Add Requirement</button></div>
+<div class="tbl-wrap"><table class="data" id="regTable"><thead><tr>
+<th>Requirement</th><th>Regulatory Body</th><th>Date Due</th><th>Date Completed</th>
+<th>Status</th><th>Reference</th><th>Responsible</th><th>Next Review</th><th></th></tr></thead>
+<tbody id="regBody"></tbody></table></div></div>
+<div id="ct-trace" class="tab-pane">
+<div class="card"><div class="card-t">Animal Trace Search</div>
+<div class="ff" style="max-width:300px;margin-bottom:12px;"><label class="fl">Animal ID</label>
+<input class="fi" id="traceId" placeholder="Enter ID"></div>
+<button class="btn btn-forest" onclick="traceAnimal()">Trace Animal</button>
+<div id="traceResult" style="margin-top:12px;font-size:.82rem;"></div></div>
+<div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('traceBody',traceRowTpl)">Add Trace Event</button></div>
+<div class="tbl-wrap"><table class="data" id="traceTable"><thead><tr>
+<th>Animal ID</th><th>Date</th><th>Event Type</th><th>From</th><th>To</th>
+<th>Health Status</th><th>Certificate</th><th>Inspector</th><th></th></tr></thead>
+<tbody id="traceBody"></tbody></table></div></div>
+<div id="ct-cert" class="tab-pane">
+<div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('certBody',certRowTpl)">Add Certificate</button></div>
+<div class="tbl-wrap"><table class="data" id="certTable"><thead><tr>
+<th>Certificate Type</th><th>Body</th><th>Cert No.</th>
+<th>Issue Date</th><th>Expiry Date</th><th>Scope</th><th>Status</th><th></th></tr></thead>
+<tbody id="certBody"></tbody></table></div></div>
+<div id="ct-audit" class="tab-pane">
+<div class="btn-row" style="margin-bottom:12px;"><button class="btn btn-forest" onclick="addTR('auditBody',auditRowTpl)">Add Audit Entry</button></div>
+<div class="tbl-wrap"><table class="data" id="auditTable"><thead><tr>
+<th>Date</th><th>Type</th><th>Auditor</th><th>Area</th>
+<th>Findings</th><th>Non-Conformances</th><th>Corrective Actions</th>
+<th>Status</th><th>Follow-up</th><th></th></tr></thead>
+<tbody id="auditBody"></tbody></table></div></div></div>
+<div id="pg-analytics" class="page"><div class="pg-head"><div class="pg-title">Analytics &amp; KPIs</div></div>
+<div class="pg-sub">Performance benchmarking against SSA dairy standards</div><div class="pg-rule"></div>
+<div class="kpi-strip">
+<div class="kpi"><div class="kpi-lbl">305-Day Yield</div><div class="kpi-val gold" id="aEBV">-</div><div class="kpi-hint">Litres (rolling)</div></div>
+<div class="kpi"><div class="kpi-lbl">Avg Daily Yield</div><div class="kpi-val" id="aADY">-</div><div class="kpi-hint">L/cow/day</div></div>
+<div class="kpi"><div class="kpi-lbl">Herd Avg Fat %</div><div class="kpi-val ocean" id="aFat">-</div><div class="kpi-hint">Target &gt;=3.5%</div></div>
+<div class="kpi"><div class="kpi-lbl">Herd Avg Protein %</div><div class="kpi-val ocean" id="aProt">-</div><div class="kpi-hint">Target &gt;=3.2%</div></div>
+<div class="kpi"><div class="kpi-lbl">Bulk SCC</div><div class="kpi-val" id="aBSCC">-</div><div class="kpi-hint">x1000 cells/ml</div></div>
+<div class="kpi"><div class="kpi-lbl">Mastitis Incidence</div><div class="kpi-val" id="aMast">-</div><div class="kpi-hint">% of herd/year</div></div>
+<div class="kpi"><div class="kpi-lbl">Culling Rate</div><div class="kpi-val" id="aCull">-</div><div class="kpi-hint">% per year</div></div>
+<div class="kpi"><div class="kpi-lbl">Mortality Rate</div><div class="kpi-val danger" id="aMort">-</div><div class="kpi-hint">% per year</div></div></div>
+<div class="two-col">
+<div class="card"><div class="card-t">Monthly Production Record</div>
+<div class="btn-row" style="margin-bottom:10px;"><button class="btn btn-forest btn-sm" onclick="addTR('analBody',analRowTpl)">Add Month</button></div>
+<div class="tbl-wrap"><table class="data" id="analTable"><thead><tr>
+<th>Month</th><th>Milking Cows</th><th>Total Yield (L)</th><th>Avg/Cow/Day</th>
+<th>Fat %</th><th>Protein %</th><th>SCC</th><th>Income</th><th>Feed Cost</th><th>Margin/L</th></tr></thead>
+<tbody id="analBody"></tbody></table></div></div>
+<div class="card"><div class="card-t">SSA Benchmarks</div>
+<div style="display:flex;flex-direction:column;gap:10px;">
+<div><div style="display:flex;justify-content:space-between;font-size:.76rem;margin-bottom:3px;"><span>Avg Yield/Cow/Day</span><span style="color:var(--ocean);">15-25 L</span></div><div class="prog"><div class="prog-f" style="width:58%;"></div></div></div>
+<div><div style="display:flex;justify-content:space-between;font-size:.76rem;margin-bottom:3px;"><span>Milk Fat %</span><span style="color:var(--gold);">&gt;=3.5%</span></div><div class="prog"><div class="prog-f" style="width:72%;background:linear-gradient(90deg,var(--gold),var(--honey));"></div></div></div>
+<div><div style="display:flex;justify-content:space-between;font-size:.76rem;margin-bottom:3px;"><span>Conception Rate</span><span style="color:var(--success);">&gt;=50%</span></div><div class="prog"><div class="prog-f" style="width:44%;background:linear-gradient(90deg,var(--sage),var(--leaf));"></div></div></div>
+<div><div style="display:flex;justify-content:space-between;font-size:.76rem;margin-bottom:3px;"><span>Bulk SCC</span><span style="color:var(--bark);">&lt;250,000</span></div><div class="prog"><div class="prog-f" style="width:62%;background:linear-gradient(90deg,var(--clay),var(--sand));"></div></div></div>
+<div><div style="display:flex;justify-content:space-between;font-size:.76rem;margin-bottom:3px;"><span>Calving Interval</span><span style="color:var(--ocean);">12-13 months</span></div><div class="prog"><div class="prog-f" style="width:55%;"></div></div></div>
+<div><div style="display:flex;justify-content:space-between;font-size:.76rem;margin-bottom:3px;"><span>Feed Cost % Income</span><span style="color:var(--danger);">&lt;55%</span></div><div class="prog"><div class="prog-f" style="width:48%;background:linear-gradient(90deg,var(--danger),#e67e22);"></div></div></div>
+</div></div></div></div>
+<div id="pg-dss" class="page"><div class="pg-head"><div class="pg-title">Decision Support System</div></div>
+<div class="pg-sub">Alerts, scenario simulation and herd optimisation tools</div><div class="pg-rule"></div>
+<div class="card"><div class="card-t">Active Alerts &amp; Recommendations</div>
+<div id="dssAlerts"></div></div>
+<div class="two-col">
+<div class="card"><div class="card-t">Feed Cost Scenario Simulator</div>
+<div class="fg">
+<div class="ff"><label class="fl">Current Feed Cost/kg</label><input class="fi" type="number" id="simFC" value="0" step=".01" oninput="runSim()"></div>
+<div class="ff"><label class="fl">Price Change %</label><input class="fi" type="number" id="simChg" value="10" oninput="runSim()"></div>
+<div class="ff"><label class="fl">Litres Produced/month</label><input class="fi" type="number" id="simLit" value="0" oninput="runSim()"></div>
+<div class="ff"><label class="fl">Feed kg/cow/day</label><input class="fi" type="number" id="simFKg" value="20" oninput="runSim()"></div>
+<div class="ff"><label class="fl">Milking Cows</label><input class="fi" type="number" id="simCows" value="0" oninput="runSim()"></div>
+<div class="ff"><label class="fl">Milk Price/L</label><input class="fi" type="number" id="simMP" value="0" step=".01" oninput="runSim()"></div></div>
+<div id="simResult" style="margin-top:12px;padding:12px;background:var(--cream);border:1px solid var(--border);border-radius:var(--r);font-size:.82rem;line-height:1.8;"></div></div>
+<div class="card"><div class="card-t">Culling &amp; Dry-Off Planner</div>
+<div class="btn-row" style="margin-bottom:10px;"><button class="btn btn-forest btn-sm" onclick="addTR('dssBody',dssRowTpl)">Add Recommendation</button></div>
+<div class="tbl-wrap"><table class="data" id="dssTable"><thead><tr>
+<th>Animal ID</th><th>Recommendation</th><th>Reason</th><th>Priority</th>
+<th>Target Date</th><th>Est. Value</th><th>Decision</th><th>Action</th><th></th></tr></thead>
+<tbody id="dssBody"></tbody></table></div></div></div></div>
+<div id="pg-suppliers" class="page"><div class="pg-head"><div class="pg-title">Suppliers Directory</div></div>
+<div class="pg-sub">Manage supplier contacts, products and credit terms</div><div class="pg-rule"></div>
+<div class="btn-row" style="margin-bottom:14px;">
+<button class="btn btn-forest" onclick="openSuppModal()">Add Supplier</button>
+<button class="btn btn-gold" onclick="exportContactsCSV('suppliers')">Export CSV</button>
+<div class="search-w" style="margin-left:auto;"><span class="search-ic">&#x1F50D;</span>
+<input class="search-inp" placeholder="Search suppliers..." oninput="filterCards('suppGrid',this.value)"></div></div>
+<div id="suppGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;"></div></div>
+<div id="pg-customers" class="page"><div class="pg-head"><div class="pg-title">Customer Directory</div></div>
+<div class="pg-sub">Manage customer contacts and supply agreements</div><div class="pg-rule"></div>
+<div class="btn-row" style="margin-bottom:14px;">
+<button class="btn btn-forest" onclick="openCustModal()">Add Customer</button>
+<button class="btn btn-gold" onclick="exportContactsCSV('customers')">Export CSV</button>
+<div class="search-w" style="margin-left:auto;"><span class="search-ic">&#x1F50D;</span>
+<input class="search-inp" placeholder="Search customers..." oninput="filterCards('custGrid',this.value)"></div></div>
+<div id="custGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;"></div></div>
+<div id="pg-reports" class="page"><div class="pg-head"><div class="pg-title">Reports</div></div>
+<div class="pg-sub">Print, save as PDF and export to CSV</div><div class="pg-rule"></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
+<div class="card"><div class="card-t">Full Dairy Report</div><p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px;font-style:italic;">Comprehensive report covering all modules.</p><div class="btn-row"><button class="btn btn-forest" onclick="window.print()">Print / PDF</button></div></div>
+<div class="card"><div class="card-t">Milk Production</div><p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px;font-style:italic;">Yield, quality and lactation summary.</p><div class="btn-row"><button class="btn btn-gold" onclick="exportCSV('milkTable','milk_production')">Export CSV</button></div></div>
+<div class="card"><div class="card-t">Herd Register</div><p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px;font-style:italic;">Complete animal records.</p><div class="btn-row"><button class="btn btn-gold" onclick="exportCSV('animalTable','herd_register')">Export CSV</button></div></div>
+<div class="card"><div class="card-t">Health Records</div><p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px;font-style:italic;">Vaccinations, treatments and vet visits.</p><div class="btn-row"><button class="btn btn-gold" onclick="exportCSV('vaccTable','vaccinations')">Export CSV</button></div></div>
+<div class="card"><div class="card-t">Reproduction Report</div><p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px;font-style:italic;">AI, PD, calving and fertility KPIs.</p><div class="btn-row"><button class="btn btn-gold" onclick="exportCSV('aiTable','breeding')">Export CSV</button></div></div>
+<div class="card"><div class="card-t">Financial Summary</div><p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px;font-style:italic;">Income, expenses and profitability.</p><div class="btn-row"><button class="btn btn-gold" onclick="exportCSV('incTable','income')">Export CSV</button><button class="btn btn-outline" onclick="window.print()">Print</button></div></div>
+<div class="card"><div class="card-t">Feed Report</div><p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px;font-style:italic;">Feed inventory and cost analysis.</p><div class="btn-row"><button class="btn btn-gold" onclick="exportCSV('fsTable','feed_inventory')">Export CSV</button></div></div>
+<div class="card"><div class="card-t">Compliance Report</div><p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px;font-style:italic;">Regulatory records and audit log.</p><div class="btn-row"><button class="btn btn-gold" onclick="exportCSV('regTable','compliance')">Export CSV</button></div></div>
+</div></div>
+<div id="pg-license" class="page"><div class="pg-head"><div class="pg-title">License &amp; Activation</div></div>
+<div class="pg-sub">TAEM DAIRY v2.26 - linked with SNH Universal License Generator</div><div class="pg-rule"></div>
+<div style="max-width:580px;">
+<div class="card"><div class="card-t">License Status</div>
+<div style="margin-bottom:14px;"><span class="badge" id="licBadge" style="font-size:.82rem;padding:5px 16px;">Trial Mode</span></div>
+<div class="fg">
+<div class="ff"><label class="fl">License Type</label><div id="licTypeDisp" style="color:var(--gold);font-family:var(--fd);font-size:.95rem;font-weight:600;">30-Day Trial</div></div>
+<div class="ff"><label class="fl">Status</label><div id="licStatusDisp" style="color:var(--text-muted);font-size:.85rem;font-style:italic;">Active</div></div></div>
+<label class="fl" style="display:block;margin-bottom:6px;">Your Device ID</label>
+<div style="font-family:var(--fm);font-size:.8rem;background:var(--parch);border:1.5px solid var(--border2);border-radius:var(--r);padding:10px 13px;color:var(--gold);word-break:break-all;margin-bottom:12px;" id="licDeviceId">-</div>
+<div style="font-size:.75rem;color:var(--text-muted);margin-bottom:14px;line-height:1.8;font-style:italic;">
+Send Device ID to Suwani Nexus Hub. License key provided upon payment.<br>
+taemsoftware@gmail.com | WhatsApp: +27 63 953 1185</div>
+<div class="ff" style="margin-bottom:12px;"><label class="fl">Enter License Key</label>
+<input class="fi" id="licKeyPg" placeholder="SNH-DAIRY-ANN-XXXX-XXXX-XXXX-XXXXXX"></div>
+<div class="btn-row">
+<button class="btn btn-forest" onclick="doActivate(document.getElementById('licKeyPg').value.trim())">Activate License</button>
+<button class="btn btn-outline" onclick="checkLicStatus()">Check Status</button></div>
+<div id="licPageMsg" style="margin-top:10px;font-size:.8rem;min-height:18px;"></div></div>
+<div class="card"><div class="card-t">License Options</div>
+<div class="two-col">
+<div style="background:rgba(160,114,10,.06);border:1px solid rgba(160,114,10,.2);border-radius:var(--r2);padding:14px;">
+<div style="font-family:var(--fd);font-weight:600;color:var(--gold);margin-bottom:4px;">Annual License</div>
+<div style="font-size:.76rem;color:var(--text-muted);font-style:italic;">1 year from activation. Renewable.</div></div>
+<div style="background:rgba(26,90,40,.06);border:1px solid rgba(26,90,40,.2);border-radius:var(--r2);padding:14px;">
+<div style="font-family:var(--fd);font-weight:600;color:var(--success);margin-bottom:4px;">Perpetual License</div>
+<div style="font-size:.76rem;color:var(--text-muted);font-style:italic;">One-time. Lifetime on registered device.</div></div></div></div></div></div>
+<div id="pg-settings" class="page"><div class="pg-head"><div class="pg-title">Settings</div></div>
+<div class="pg-sub">Application preferences and data management</div><div class="pg-rule"></div>
+<div class="card" style="max-width:500px;margin-bottom:16px;"><div class="card-t">Security</div>
+<div class="fg">
+<div class="ff"><label class="fl">New 4-Digit Passcode</label><input class="fi" type="password" id="newP1" maxlength="4" placeholder="New PIN"></div>
+<div class="ff"><label class="fl">Confirm Passcode</label><input class="fi" type="password" id="newP2" maxlength="4" placeholder="Confirm PIN"></div></div>
+<div class="btn-row">
+<button class="btn btn-forest" onclick="changePIN()">Save Passcode</button>
+<button class="btn btn-outline" onclick="forgotPIN()">Forgot Passcode</button></div></div>
+<div class="card" style="max-width:500px;margin-bottom:16px;"><div class="card-t">Regional Preferences</div>
+<div class="fg">
+<div class="ff"><label class="fl">Currency</label>
+<select class="fi" id="settCurr" onchange="setCurr(this.value)">
+<option value="USD">USD ($)</option><option value="ZAR" selected>ZAR (R)</option>
+<option value="SZL">SZL (E)</option><option value="ZMW">ZMW (K)</option>
+<option value="BWP">BWP (P)</option><option value="NAD">NAD (N$)</option>
+<option value="LSL">LSL (L)</option><option value="ZWL">ZWL (Z$)</option></select></div>
+<div class="ff"><label class="fl">Date Format</label><select class="fi"><option>DD/MM/YYYY</option><option>MM/DD/YYYY</option><option>YYYY-MM-DD</option></select></div>
+<div class="ff"><label class="fl">Measurement Units</label><select class="fi"><option>Metric (litres, kg)</option><option>Imperial (gallons, lb)</option></select></div></div>
+<button class="btn btn-forest" onclick="toast('Settings saved')">Save</button></div>
+<div class="card" style="max-width:500px;margin-bottom:16px;"><div class="card-t">Data Management</div>
+<div class="btn-row">
+<button class="btn btn-outline" onclick="exportAll()">Export All (JSON)</button>
+<button class="btn btn-outline" onclick="document.getElementById('impFile').click()">Import Data</button>
+<button class="btn btn-danger" onclick="clearAll()">Clear All Data</button></div>
+<input type="file" id="impFile" accept=".json" style="display:none" onchange="importData(event)"></div>
+<div class="card" style="max-width:500px;"><div class="card-t">About</div>
+<div style="font-size:.82rem;color:var(--text-muted);line-height:2.1;">
+<div><strong style="color:var(--text-body);">Software:</strong> TAEM DAIRY v2.26</div>
+<div><strong style="color:var(--text-body);">Developer:</strong> Suwani Nexus Hub</div>
+<div><strong style="color:var(--text-body);">Academic Lead:</strong> Prof Obert Tada (PhD)</div>
+<div><strong style="color:var(--text-body);">Copyright:</strong> &copy; Suwani Nexus Hub - TAEM. All rights reserved.</div>
+<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">
++27 63 953 1185 | +27 78 334 7950 | WhatsApp: +27 63 953 1185<br>
+taemsoftware@gmail.com</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+<a class="clink clink-wa" href="https://wa.me/27639531185" target="_blank">WhatsApp</a>
+<a class="clink clink-em" href="mailto:taemsoftware@gmail.com">Email</a>
+<a class="clink clink-ph" href="tel:+27639531185">Call</a></div></div></div>
+</main>
+</div><!-- /appShell -->
+<div id="toast"></div>
+<script>
+var addTR = addTableRow;
+
+'use strict';
+// ═══════════════════════════════════════════════════
+// STATE & CONSTANTS
+// ═══════════════════════════════════════════════════
+const PIN_KEY='taem_dairy_pin', LIC_KEY='taem_dairy_lic', TRIAL_KEY='taem_dairy_trial', DATA_KEY='taem_dairy_data';
+const CURR_SYMS={USD:'$',ZAR:'R',SZL:'E',ZMW:'K',BWP:'P',NAD:'N$',LSL:'L',ZWL:'Z$'};
+var ST={currency:'ZAR',suppliers:[],customers:[],animals:[],pinSet:false,pin:null,licensed:false,licType:'trial',trialStart:null,farmName:''};
+var pinBuf='',pinMode='set',pinFirst='',failCount=0;
+
+// ═══════════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded',function(){
+  loadState();
+  genDeviceID();
+  updateTopDate();
+  setInterval(updateTopDate,60000);
+  initCF();
+  renderDashNotifs();
+  renderHerdStatus();
+  renderUrgent();
+  drawMilkChart();
+  renderDSSAlerts();
+  document.getElementById('nwDate').textContent=new Date().toLocaleDateString('en-ZA',{year:'numeric',month:'long',day:'numeric'});
+  var stored=localStorage.getItem(PIN_KEY);
+  if(stored){
+    document.getElementById('lockTitle').textContent='Enter Your Passcode';
+    document.getElementById('lockSubtitle').textContent='Access your dairy management system';
+    pinMode='login';
+    updateTrialDisplay();
+  } else {
+    document.getElementById('lockTitle').textContent='Set Your 4-Digit Passcode';
+    document.getElementById('lockSubtitle').textContent='Secure your dairy management data';
+    document.getElementById('recoverBox').style.display='none';
+  }
+  if(ST.licensed){document.getElementById('licBanner').style.display='none';}
+});
+
+// ═══════════════════════════════════════════════════
+// PIN
+// ═══════════════════════════════════════════════════
+function kp(v){
+  if(v==='C'||v==='⌫'){pinBuf=pinBuf.slice(0,-1);updDots();return;}
+  if(v==='OK'){verPin();return;}
+  if(pinBuf.length>=4)return;
+  pinBuf+=v; updDots();
+  if(pinBuf.length===4)setTimeout(verPin,180);
+}
+function updDots(){
+  for(var i=0;i<4;i++){var d=document.getElementById('pd'+i);if(d){d.textContent=i<pinBuf.length?'●':'';d.classList.toggle('filled',i<pinBuf.length);}}
+}
+function decPin(s){try{var once=atob(s);if(/^\d{4}$/.test(once))return once;var twice=atob(once);if(/^\d{4}$/.test(twice))return twice;}catch(e){}return null;}
+function verPin(){
+  var stored=localStorage.getItem(PIN_KEY);
+  var msg=document.getElementById('pinMsg');
+  if(!stored){
+    if(pinMode==='set'){
+      if(pinBuf.length<4){showPM('Enter all 4 digits',false);return;}
+      pinFirst=pinBuf;pinBuf='';updDots();
+      pinMode='confirm';
+      document.getElementById('lockTitle').textContent='Confirm Your Passcode';
+      document.getElementById('lockSubtitle').textContent='Re-enter the same 4 digits';
+      return;
+    }
+    if(pinMode==='confirm'){
+      if(pinBuf!==pinFirst){
+        showPM('Codes did not match — try again',false);
+        pinBuf='';pinFirst='';pinMode='set';updDots();
+        document.getElementById('lockTitle').textContent='Set Your 4-Digit Passcode';
+        document.getElementById('lockSubtitle').textContent='Choose a 4-digit code to protect your data';
+        return;
+      }
+      localStorage.setItem(PIN_KEY,btoa(btoa(pinBuf)));
+      if(!localStorage.getItem(TRIAL_KEY))localStorage.setItem(TRIAL_KEY,Date.now());
+      ST.trialStart=parseInt(localStorage.getItem(TRIAL_KEY));
+      showPM('✅ Passcode set! Opening…',true);
+      setTimeout(unlockApp,600);return;
+    }
+  }
+  var decoded=decPin(stored);
+  if(decoded===null){showPM('PIN data corrupt — resetting…',false);setTimeout(function(){localStorage.removeItem(PIN_KEY);location.reload();},1500);return;}
+  if(decoded===pinBuf){failCount=0;showPM('✅ Welcome back!',true);setTimeout(unlockApp,350);}
+  else{failCount++;pinBuf='';updDots();
+    if(failCount>=5){showPM('Too many attempts — see recovery',false);document.getElementById('recoverBox').style.display='block';}
+    else showPM('❌ Incorrect. Attempt '+failCount+'/5',false);
+  }
+}
+function showPM(m,ok){var el=document.getElementById('pinMsg');el.textContent=m;el.style.color=ok?'#3aaac8':'var(--danger)';if(!ok)setTimeout(function(){el.textContent='';},3000);}
+function toggleRecover(){var b=document.getElementById('recoverBox');b.style.display=b.style.display==='none'?'block':'none';}
+function emergencyReset(){if(confirm('Clear PIN only? Farm data is preserved.')){{localStorage.removeItem(PIN_KEY);location.reload();}}}
+
+function unlockApp(){
+  document.getElementById('lockScreen').style.display='none';
+  document.getElementById('topBar').style.display='flex';
+  document.getElementById('appShell').style.display='flex';
+  if(!ST.licensed){document.getElementById('licBanner').style.display='flex'; document.getElementById('licBanner').style.display='flex';}
+  if(ST.farmName)document.getElementById('farmNameInp').value=ST.farmName;
+  updateTrialDisplay();
+  renderDashNotifs();
+  renderSuppliers();renderCustomers();renderAnimals();
+}
+function doLock(){location.reload();}
+function updateTrialDisplay(){
+  var start=parseInt(localStorage.getItem(TRIAL_KEY)||Date.now());
+  var days=Math.max(0,30-Math.floor((Date.now()-start)/86400000));
+  document.getElementById('trialTxt').textContent='⏳ Trial — '+days+' day(s) remaining';
+}
+
+// ═══════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════
+function showPage(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('on');});
+  var pg=document.getElementById(id);if(pg)pg.classList.add('on');
+  document.querySelectorAll('.nav-item[data-pg="'+id+'"]').forEach(function(n){n.classList.add('on');});
+  if(id==='pg-networth')calcNW();
+  if(id==='pg-dash'){renderDashNotifs();renderHerdStatus();renderUrgent();drawMilkChart();}
+  if(id==='pg-suppliers')renderSuppliers();
+  if(id==='pg-customers')renderCustomers();
+}
+function swTab(el,paneId){
+  var parent=el.parentElement;
+  parent.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+  el.classList.add('on');
+  var cont=el.closest('.page')||document.getElementById('mainArea');
+  cont.querySelectorAll('.tab-pane').forEach(function(p){p.classList.remove('on');});
+  var pane=document.getElementById(paneId);if(pane)pane.classList.add('on');
+}
+
+// ═══════════════════════════════════════════════════
+// CURRENCY
+// ═══════════════════════════════════════════════════
+function setCurr(c){ST.currency=c;saveState();toast('Currency: '+c+' ('+CURR_SYMS[c]+')');}
+function fc(n){var s=CURR_SYMS[ST.currency]||'R';return s+(isNaN(n)?'0':parseFloat(n).toLocaleString('en-ZA',{minimumFractionDigits:2,maximumFractionDigits:2}));}
+
+// ═══════════════════════════════════════════════════
+// TABLE ROW TEMPLATES
+// ═══════════════════════════════════════════════════
+function delRow(btn){btn.closest('tr').remove();saveState();}
+function addTableRow(tbodyId,tpl){var tb=document.getElementById(tbodyId);if(!tb)return;var tr=document.createElement('tr');tr.innerHTML=tpl();tb.appendChild(tr);}
+var xbtn='<button class="btn btn-danger btn-sm" onclick="delRow(this)">✕</button>';
+function si(opts){return '<select style="background:transparent;border:none;color:var(--white);font-family:var(--fb);font-size:.78rem;width:100%;outline:none;">'+opts.map(function(o){return '<option>'+o+'</option>';}).join('')+'</select>';}
+var movTypes=['Purchase','Sale','Culling','Death','Transfer','Birth','Loan/Return'];
+var movRowTpl=function(){return '<td><input placeholder="ID"></td><td><input type="date"></td><td>'+si(movTypes)+'</td><td><input placeholder="From"></td><td><input placeholder="To"></td><td><input></td><td class="num"><input type="number" value="0"></td><td><input></td><td><input></td><td>'+xbtn+'</td>';};
+var pedRowTpl=function(){return '<td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td>'+xbtn+'</td>';};
+var mqRowTpl=function(){return '<td><input type="date"></td><td>'+si(['Individual Cow','Bulk Tank','Pooled Sample'])+'</td><td><input></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".1"></td><td>'+si(['Negative','Positive','Not Tested'])+'</td><td>'+si(['None','Suspected','Confirmed'])+'</td><td>'+si(['Pass','Fail','Pending'])+'</td><td><input></td><td><input></td><td>'+xbtn+'</td>';};
+var lacRowTpl=function(){return '<td><input></td><td>'+si(['1st','2nd','3rd','4th','5th+'])+'</td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".1"></td><td>'+si(['Active','Dry','Completed'])+'</td><td>'+xbtn+'</td>';};
+var bulkRowTpl=function(){return '<td><input type="date"></td><td><input></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1" oninput="calcBulkRow(this)"></td><td class="num"><input type="number" step=".1" oninput="calcBulkRow(this)"></td><td class="num"><input type="number" step=".1" oninput="calcBulkRow(this)"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><span class="bulk-close">0</span></td><td class="num"><input type="number" step=".1"></td><td><input></td><td class="num"><input type="number" step=".01" oninput="calcBulkRev(this)"></td><td class="num"><span class="bulk-rev">0</span></td><td>'+xbtn+'</td>';};
+var parlourRowTpl=function(){return '<td><input type="date"></td><td>'+si(['AM','PM','Evening'])+'</td><td class="num"><input type="number"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".1"></td><td><input></td><td><input></td><td>'+si(['Yes','No'])+'</td><td>'+si(['Positive','Negative','Not Done'])+'</td><td><input></td><td>'+xbtn+'</td>';};
+var vaccRowTpl=function(){return '<td><input placeholder="ID or All Herd"></td><td><input></td><td><input></td><td><input></td><td class="num"><input type="number" step=".1"></td><td>'+si(['Subcutaneous (SC)','Intramuscular (IM)','Intranasal','Oral','Intramammary'])+'</td><td><input type="date"></td><td><input type="date"></td><td><input></td><td><input></td><td><input></td><td class="num"><input type="number" value="0"></td><td>'+si(['Complete','Due','Overdue'])+'</td><td>'+xbtn+'</td>';};
+var treatRowTpl=function(){return '<td><input></td><td><input type="date"></td><td>'+si(['Mastitis','Metritis','Ketosis','Milk Fever','Lameness','Respiratory','Digestive','Eye Condition','Skin Condition','Injury','Retained Placenta','Other'])+'</td><td><input></td><td><input></td><td class="num"><input type="number" step=".1"></td><td>'+si(['IM','SC','IV','Oral','Intramammary','Topical'])+'</td><td>'+si(['Once','Twice Daily','3x Daily','Every 2 Days','Every 3 Days','Weekly'])+'</td><td class="num"><input type="number"></td><td class="num"><input type="number"></td><td class="num"><input type="number"></td><td><input type="date"></td><td><input></td><td>'+si(['Yes','No'])+'</td><td class="num"><input type="number" value="0"></td><td>'+si(['Recovered','Ongoing','Culled','Died','Unknown'])+'</td><td>'+xbtn+'</td>';};
+var diseaseRowTpl=function(){return '<td><input></td><td><input type="date"></td><td>'+si(['Mastitis','Brucellosis','TB','Foot & Mouth','Lumpy Skin','East Coast Fever','Anaplasmosis','Babesiosis','BVD','IBR','Ketosis','Milk Fever','Bloat','Liver Fluke','Other'])+'</td><td>'+si(['Reproductive','Mammary','Respiratory','Digestive','Musculoskeletal','Neurological','Skin','Systemic','Other'])+'</td><td><input></td><td>'+si(['Clinical Examination','Lab Test','Serology','PCR','Post-Mortem','Other'])+'</td><td>'+si(['Mild','Moderate','Severe','Critical'])+'</td><td>'+si(['Yes','No','Unknown'])+'</td><td class="num"><input type="number"></td><td>'+si(['Yes – Notifiable','No','Unknown'])+'</td><td><input type="date"></td><td>'+si(['Recovered','Culled','Died','Ongoing','Unknown'])+'</td><td class="num"><input type="number" value="0"></td><td>'+xbtn+'</td>';};
+var drugRowTpl=function(){return '<td><input></td><td>'+si(['Antibiotic','Anti-inflammatory','Antiparasitic','Vaccine','Hormone','Nutritional Supplement','Teat Dip','Disinfectant','Other'])+'</td><td><input></td><td><input></td><td><input></td><td><input type="date"></td><td class="num"><input type="number"></td><td>'+si(['ml','L','g','kg','tablet','sachet','dose'])+'</td><td class="num"><input type="number"></td><td class="num"><input type="number"></td><td>'+si(['Refrigerated 2-8°C','Cool Dry Place','Room Temp','Frozen'])+'</td><td><input></td><td><input type="date"></td><td class="num"><input type="number" step=".01"></td><td>'+si(['Yes – Vet Prescription','No'])+'</td><td>'+xbtn+'</td>';};
+var vetRowTpl=function(){return '<td><input type="date"></td><td><input></td><td><input></td><td>'+si(['Routine Check','Emergency','Vaccination','Pregnancy Diagnosis','Dehorning','AI Training','Herd Test','Other'])+'</td><td class="num"><input type="number"></td><td><input></td><td><input></td><td><input></td><td>'+si(['Yes','No'])+'</td><td><input type="date"></td><td class="num"><input type="number" value="0"></td><td><input></td><td>'+xbtn+'</td>';};
+var heatRowTpl=function(){return '<td><input></td><td><input type="date"></td><td><input type="time"></td><td>'+si(['Visual Observation','Tail Painting','Kamar Patch','Pedometer','Scratch Marks','Standing to Bull','Other'])+'</td><td>'+si(['Standing Heat','Restlessness','Mucus Discharge','Swollen Vulva','Bellowing','Multiple Signs'])+'</td><td>'+si(['Weak','Moderate','Strong'])+'</td><td><input type="date"></td><td class="num"><input type="number"></td><td>'+si(['Serve (AI)','Serve (Bull)','Skip – Too Early','Skip – Health','Monitor','Synchronise'])+'</td><td><input></td><td><input></td><td>'+xbtn+'</td>';};
+var aiRowTpl=function(){return '<td><input></td><td><input type="date"></td><td>'+si(['Artificial Insemination (AI)','Natural Service (Bull)','Embryo Transfer (ET)','ICSI'])+'</td><td><input></td><td>'+si(['Holstein-Friesian','Jersey','Ayrshire','Brown Swiss','Simmental','Fleckvieh','Local Breed','Crossbred','Other'])+'</td><td><input></td><td>'+si(['Yes – GnRH/CIDR','Yes – PG','No'])+'</td><td>'+si(['None','Ovsynch','Resynch','CIDR-PG','Double Ovsynch','Other'])+'</td><td><input></td><td>'+si(['Own Stud','Imported Semen','National AI Centre','AI Company'])+'</td><td class="num"><input type="number" step=".01"></td><td><input type="date"></td><td class="num"><input type="number" min="1"></td><td>'+xbtn+'</td>';};
+var pregRowTpl=function(){return '<td><input></td><td><input type="date"></td><td>'+si(['Rectal Palpation','Ultrasound','Progesterone Test','PSPB Test','Blood Test'])+'</td><td class="num"><input type="number"></td><td>'+si(['Pregnant','Not Pregnant','Uncertain','Repeat Examination Needed'])+'</td><td class="num"><input type="number"></td><td>'+si(['Unknown','Male','Female','Not Visible'])+'</td><td>'+si(['No','Yes – Twins (2)','Yes – Triplets (3)'])+'</td><td><input type="date"></td><td><input type="date"></td><td><input></td><td class="num"><input type="number" value="0"></td><td>'+xbtn+'</td>';};
+var calvRowTpl=function(){return '<td><input></td><td><input type="date"></td><td>'+si(['1 – Normal/Unassisted','2 – Minor Assistance','3 – Major Assistance','4 – Caesarean','5 – Abnormal Presentation'])+'</td><td>'+si(['None','Halter Pull','Jack/Calving Aid','Vet Assisted','Caesarean'])+'</td><td><input></td><td>'+si(['Male','Female'])+'</td><td class="num"><input type="number" step=".1"></td><td>'+si(['Holstein-Friesian','Jersey','Ayrshire','Crossbred','Other'])+'</td><td>'+si(['Live','Stillborn','Weak/Died <24h','Mummified'])+'</td><td>'+si(['Yes','No'])+'</td><td class="num"><input type="number" step=".1"></td><td>'+si(['No','Yes – Expelled <8h','Yes – Retained >12h','Yes – Manual Removal'])+'</td><td>'+si(['Excellent','Good','Fair','Poor'])+'</td><td class="num"><input type="number"></td><td><input></td><td>'+xbtn+'</td>';};
+var rationRowTpl=function(){return '<td>'+si(['Maize Silage','Grass Silage','Legume Silage','Lucerne Hay','Grass Hay','Wheat Straw','Maize Grain','Wheat Bran','Soya Bean Meal','Cottonseed Cake','Sunflower Cake','Full-Fat Soya','Distillers Grain','Molasses','Mineral Mix','Vitamin Premix','Bypass Protein','Palm Kernel Cake','Canola Meal','Commercial Dairy Concentrate','Other'])+'</td><td>'+si(['Roughage','Concentrate','Protein Supplement','Energy Supplement','Mineral/Vitamin','Bypass Feed','By-product'])+'</td><td class="num"><input type="number" step=".1" value="0" oninput="calcRationRow(this)"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01" oninput="calcRationRow(this)"></td><td class="num"><span class="rat-dm">0</span></td><td class="num"><input type="number" step=".01" oninput="calcRationRow(this)"></td><td class="num"><span class="rat-cost">0</span></td><td>'+xbtn+'</td>';};
+var intakeRowTpl=function(){return '<td><input type="date"></td><td><input></td><td class="num"><input type="number" step=".1" oninput="calcIntakeRow(this)"></td><td class="num"><input type="number" step=".1" oninput="calcIntakeRow(this)"></td><td class="num"><span class="inta-actual">0</span></td><td class="num"><span class="inta-dm">0</span></td><td>'+si(['TMR','PMR','Silage','Hay','Concentrate','Pasture','Other'])+'</td><td>'+si(['AM','PM','Evening','All Day'])+'</td><td class="num"><input type="number" step=".1"></td><td class="num"><span class="inta-fce">0</span></td><td><input></td><td>'+xbtn+'</td>';};
+var feedStockRowTpl=function(){return '<td>'+si(['Maize Silage','Grass Silage','Lucerne Hay','Grass Hay','Maize Grain','Soya Bean Meal','Dairy Concentrate','Mineral Mix','Molasses','Other'])+'</td><td>'+si(['Roughage','Concentrate','Mineral','Supplement','By-product'])+'</td><td><input></td><td>'+si(['kg','tonne','bale','bag','litre'])+'</td><td class="num"><input type="number" step=".1" oninput="calcFeedStockRow(this)"></td><td class="num"><input type="number" step=".1" oninput="calcFeedStockRow(this)"></td><td class="num"><input type="number" step=".1" oninput="calcFeedStockRow(this)"></td><td class="num"><input type="number" step=".1" oninput="calcFeedStockRow(this)"></td><td class="num"><span class="fs-close">0</span></td><td class="num"><input type="number" step=".1"></td><td><input></td><td class="num"><input type="number" step=".01" oninput="calcFeedStockRow(this)"></td><td class="num"><span class="fs-val">0</span></td><td><input></td><td><input type="date"></td><td>'+xbtn+'</td>';};
+var feedCostRowTpl=function(){return '<td><input type="date"></td><td>'+si(['Maize Silage','Grass Silage','Lucerne Hay','Maize Grain','Dairy Concentrate','Soya Meal','Mineral Mix','Other'])+'</td><td><input></td><td class="num"><input type="number" step=".1" oninput="calcFeedCostRow(this)"></td><td>'+si(['kg','tonne','bale','bag'])+'</td><td class="num"><input type="number" step=".01" oninput="calcFeedCostRow(this)"></td><td class="num"><span class="fc-tot">0</span></td><td><input></td><td>'+si(['Paid','Pending','Disputed'])+'</td><td>'+xbtn+'</td>';};
+var staffRowTpl=function(){return '<td><input></td><td><input></td><td>'+si(['Head Herdsperson','Assistant Herdsperson','Milker','Feeder','Calf Rearer','Health Aide','Farm Manager','Driver','Maintenance','Casual Worker','Other'])+'</td><td><input></td><td><input></td><td><input type="date"></td><td>'+si(['Permanent','Seasonal','Contract','Casual'])+'</td><td>'+si(['AM Shift','PM Shift','Night Shift','Rotating','Day Only'])+'</td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td><input></td><td>'+si(['Active','On Leave','Terminated'])+'</td><td>'+xbtn+'</td>';};
+var taskRowTpl=function(){return '<td><input></td><td>'+si(['Milking','Feeding','Cleaning','Health Check','Reproduction','Calf Care','Equipment Maintenance','Record Keeping','Other'])+'</td><td>'+si(['Daily','Twice Daily','Weekly','Fortnightly','Monthly','As Required'])+'</td><td><input type="time"></td><td><input></td><td><input type="date"></td><td>'+si(['Critical','High','Medium','Low'])+'</td><td>'+si(['Pending','In Progress','Completed','Overdue','Cancelled'])+'</td><td><input></td><td><input type="date"></td><td class="num"><input type="number"></td><td><input></td><td>'+xbtn+'</td>';};
+var shiftRowTpl=function(){return '<td><input></td><td><input></td><td><input type="date"></td><td>'+si(['AM Shift','PM Shift','Night Shift','Full Day'])+'</td><td><input type="time"></td><td><input type="time"></td><td class="num"><input type="number" step=".5" oninput="calcShift(this)"></td><td class="num"><input type="number" step=".5"></td><td>'+si(['Present','Annual Leave','Sick Leave','Absent','Public Holiday','Other'])+'</td><td><input></td><td>'+xbtn+'</td>';};
+var payRowTpl=function(){return '<td><input></td><td><input></td><td><input placeholder="Jan 2025"></td><td class="num"><input type="number" oninput="calcPayRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcPayRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcPayRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcPayRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcPayRow(this)"></td><td class="num"><span class="pay-net">0</span></td><td>'+si(['Cash','Bank Transfer','Cheque','M-Pesa','Other'])+'</td><td><input type="date"></td><td>'+xbtn+'</td>';};
+var suppliesRowTpl=function(){return '<td><input></td><td>'+si(['Teat Dip/Spray','Teat Wipes','Liners','Milk Filters','Test Kits','Cleaning Chemicals','PPE','Ear Tags','Colostrum Supplements','Calf Milk Replacer','Bedding Material','Other'])+'</td><td>'+si(['L','ml','kg','g','unit','pack','box'])+'</td><td class="num"><input type="number" step=".1" oninput="calcSuppliesRow(this)"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".01" oninput="calcSuppliesRow(this)"></td><td class="num"><span class="sup-val">0</span></td><td><input></td><td><input type="date"></td><td><input type="date"></td><td>'+si(['Room Temp','Refrigerated','Frozen','Cool Dry'])+'</td><td>'+si(['OK','Low Stock','Out of Stock','Expired','Overdue Order'])+'</td><td>'+xbtn+'</td>';};
+var equipRowTpl=function(){return '<td><input></td><td><input></td><td>'+si(['Milking Machine','Milk Cooling Tank','Generator','Tractor','Feed Mixer','Water Pump','Heat Detection System','Pregnancy Scanner','Weigh Scale','Spray Equipment','Other'])+'</td><td><input></td><td><input></td><td><input type="date"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td>'+si(['Excellent','Good','Fair','Poor','Out of Service'])+'</td><td><input type="date"></td><td><input type="date"></td><td><input></td><td><input></td><td>'+si(['Yes','No','Expired'])+'</td><td><input></td><td>'+xbtn+'</td>';};
+var storageRowTpl=function(){return '<td><input type="date"></td><td><input></td><td>'+si(['Received','Used/Issued','Waste/Loss','Return to Supplier','Expired/Disposed','Transfer'])+'</td><td class="num"><input type="number" step=".1"></td><td>'+si(['kg','L','unit','bale','bag'])+'</td><td><input></td><td><input></td><td>'+si(['Good','Acceptable','Damaged','Spoiled'])+'</td><td><input></td><td><input></td><td>'+xbtn+'</td>';};
+var regRowTpl=function(){return '<td><input></td><td><input></td><td><input type="date"></td><td><input type="date"></td><td>'+si(['Compliant','Pending','Non-Compliant','Not Applicable','Under Review'])+'</td><td><input></td><td><input></td><td><input></td><td><input type="date"></td><td>'+xbtn+'</td>';};
+var traceRowTpl=function(){return '<td><input></td><td><input type="date"></td><td>'+si(['Birth','Purchase','Sale','Transfer','Slaughter','Death','Export','Import','Movement Permit','Health Check','Vaccination'])+'</td><td><input></td><td><input></td><td>'+si(['Healthy','Sick','Under Treatment','Quarantine','Unknown'])+'</td><td><input></td><td><input></td><td><input></td><td>'+xbtn+'</td>';};
+var certRowTpl=function(){return '<td>'+si(['Organic Certification','ISO 22000','HACCP','SANS 1157 Pasteurised Milk','Animal Welfare','Export Health Cert','Raw Milk Permit','Other'])+'</td><td><input></td><td><input></td><td><input type="date"></td><td><input type="date"></td><td><input></td><td>'+si(['Active','Expired','Pending','Suspended','Withdrawn'])+'</td><td>'+si(['Yes','No'])+'</td><td><input></td><td>'+xbtn+'</td>';};
+var auditRowTpl=function(){return '<td><input type="date"></td><td>'+si(['Internal','External','Regulatory','Customer','Certification','Financial'])+'</td><td><input></td><td><input></td><td><input></td><td class="num"><input type="number" value="0"></td><td><input></td><td>'+si(['Closed','Open','Pending','In Progress'])+'</td><td><input type="date"></td><td>'+xbtn+'</td>';};
+var analRowTpl=function(){return '<td><input placeholder="Jan 2025"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".1" oninput="calcAnalRow(this)"></td><td class="num"><span class="anal-avg">0</span></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".01" oninput="calcAnalRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcAnalRow(this)"></td><td class="num"><span class="anal-margin">0</span></td></tr>';};
+var cullRowTpl=function(){return '<td><input></td><td>'+si(['Dry Off','Cull & Sell','Replace with Heifer','Euthanise','Continue Lactation','Monitor'])+'</td><td>'+si(['Low Production','Reproductive Failure','Chronic Mastitis','Lameness','Old Age','Disease','Injury','Poor Body Condition','Economic'])+'</td><td>'+si(['Critical','High','Medium','Low'])+'</td><td><input type="date"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td>'+si(['Pending','Approved','Declined','Deferred'])+'</td><td>'+si(['Not Yet','Sold','Culled','Dried Off','Monitored'])+'</td><td>'+xbtn+'</td>';};
+var incomeRowTpl=function(){return '<td><input type="date"></td><td>'+si(['Milk Sales','Calf Sales','Cull Cow Sales','Bull Sales','Heifer Sales','Manure Sales','Government Grant','Other'])+'</td><td><input></td><td class="num"><input type="number" step=".1" oninput="calcIncomeRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcIncomeRow(this)"></td><td class="num"><span class="inc-amt">0</span></td><td><input></td><td><input></td><td>'+si(['Cash','EFT','Cheque','Mobile Money'])+'</td><td>'+si(['Received','Pending','Overdue'])+'</td><td>'+xbtn+'</td>';};
+var expenseRowTpl=function(){return '<td><input type="date"></td><td>'+si(['Feed','Labour','Veterinary','AI & Reproduction','Medicines','Milking Supplies','Utilities','Fuel','Equipment Maintenance','Buildings','Insurance','Marketing','Transport','Loan Repayment','Other'])+'</td><td><input></td><td><input></td><td class="num"><input type="number" step=".01" oninput="calcExpenseRow(this)"></td><td><input></td><td><input></td><td>'+si(['Cash','EFT','Cheque','Credit Card','Mobile Money'])+'</td><td>'+si(['Paid','Pending','Overdue'])+'</td><td><input></td><td>'+xbtn+'</td>';};
+
+// ═══════════════════════════════════════════════════
+// ROW CALCULATIONS
+// ═══════════════════════════════════════════════════
+function calcRationRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var dm=+(inps[0]?.value||0);var incl=+(inps[7]?.value||0);var cost=+(inps[8]?.value||0);var dmIncl=incl*(dm/100);var rowCost=incl*cost;var s=r.querySelector('.rat-dm');if(s)s.textContent=dmIncl.toFixed(2);var sc=r.querySelector('.rat-cost');if(sc)sc.textContent=fc(rowCost);calcRationTotals();}
+function calcRationTotals(){var totKg=0,totDM=0,totCost=0;document.querySelectorAll('#rationBody tr').forEach(function(r){var inps=r.querySelectorAll('input[type="number"]');totKg+=+(inps[7]?.value||0);var dm=parseFloat(r.querySelector('.rat-dm')?.textContent||0)||0;totDM+=dm;var c=parseFC(r.querySelector('.rat-cost')?.textContent||'0');totCost+=c;});setT('rTotKg',totKg.toFixed(2));setT('rTotDM',totDM.toFixed(2));setT('rTotCost',fc(totCost));}
+function calcIntakeRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var offered=+(inps[0]?.value||0),refused=+(inps[1]?.value||0);var actual=Math.max(0,offered-refused);var dmPct=0.35;var dm=actual*dmPct;if(r.querySelector('.inta-actual'))r.querySelector('.inta-actual').textContent=actual.toFixed(1);if(r.querySelector('.inta-dm'))r.querySelector('.inta-dm').textContent=dm.toFixed(2);}
+function calcFeedStockRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var op=+(inps[0]?.value||0),rec=+(inps[1]?.value||0),used=+(inps[2]?.value||0),loss=+(inps[3]?.value||0);var close=op+rec-used-loss;var cost=+(inps[4]?.value||0);var val=close*cost;if(r.querySelector('.fs-close'))r.querySelector('.fs-close').textContent=close.toFixed(1);if(r.querySelector('.fs-val'))r.querySelector('.fs-val').textContent=fc(val);calcFeedStockTotal();}
+function calcFeedStockTotal(){var t=0;document.querySelectorAll('.fs-val').forEach(function(s){t+=parseFC(s.textContent);});setT('feedStockTot',fc(t));}
+function calcFeedCostRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var qty=+(inps[0]?.value||0),price=+(inps[1]?.value||0);var tot=qty*price;if(r.querySelector('.fc-tot'))r.querySelector('.fc-tot').textContent=fc(tot);calcFeedCostTotal();}
+function calcFeedCostTotal(){var t=0;document.querySelectorAll('.fc-tot').forEach(function(s){t+=parseFC(s.textContent);});setT('feedCostTot',fc(t));}
+function calcBulkRow(el){}
+function calcBulkRev(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var sold=+(inps[2]?.value||0),price=+(inps[8]?.value||0);var rev=sold*price;if(r.querySelector('.bulk-rev'))r.querySelector('.bulk-rev').textContent=fc(rev);calcBulkTotal();}
+function calcBulkTotal(){var t=0;document.querySelectorAll('.bulk-rev').forEach(function(s){t+=parseFC(s.textContent);});setT('bulkRev',fc(t));}
+function calcPayRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var basic=+(inps[1]?.value||0),ot=+(inps[2]?.value||0),bonus=+(inps[3]?.value||0),ded=+(inps[4]?.value||0);var net=basic+ot+bonus-ded;if(r.querySelector('.pay-net'))r.querySelector('.pay-net').textContent=fc(net);}
+function calcShift(el){}
+function calcSuppliesRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var qty=+(inps[0]?.value||0),cost=+(inps[3]?.value||0);var val=qty*cost;if(r.querySelector('.sup-val'))r.querySelector('.sup-val').textContent=fc(val);calcSuppliesTotal();}
+function calcSuppliesTotal(){var t=0;document.querySelectorAll('.sup-val').forEach(function(s){t+=parseFC(s.textContent);});setT('supTotVal',fc(t));}
+function calcIncomeRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var qty=+(inps[0]?.value||0),price=+(inps[1]?.value||0);var amt=qty*price||+(inps[1]?.value||0);if(qty&&price)amt=qty*price;if(r.querySelector('.inc-amt'))r.querySelector('.inc-amt').textContent=fc(amt);calcIncomeTot();}
+function calcIncomeTot(){var t=0;document.querySelectorAll('.inc-amt').forEach(function(s){t+=parseFC(s.textContent);});setT('incTot',fc(t));}
+function calcExpenseRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var amt=+(inps[0]?.value||0);calcExpenseTot();}
+function calcExpenseTot(){var t=0;document.querySelectorAll('#expenseBody input[type="number"]').forEach(function(inp){t+=+(inp.value||0);});setT('expTot',fc(t));}
+function calcAnalRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var cows=+(inps[0]?.value||0),yield_=+(inps[1]?.value||0),inc=+(inps[2]?.value||0),feed=+(inps[3]?.value||0);var days=30,avg=cows>0?yield_/(cows*days):0;var margin=inc-feed;if(r.querySelector('.anal-avg'))r.querySelector('.anal-avg').textContent=avg.toFixed(1);if(r.querySelector('.anal-margin'))r.querySelector('.anal-margin').textContent=fc(margin);}
+
+// ═══════════════════════════════════════════════════
+// MILK ENTRY
+// ═══════════════════════════════════════════════════
+function addMilkRow(){
+  var tb=document.getElementById('milkBody');var tr=document.createElement('tr');
+  tr.innerHTML='<td><input placeholder="ID"></td><td class="num"><input type="number" min="1"></td><td class="num"><input type="number" min="0"></td><td class="num"><input type="number" step=".1" oninput="calcMilkRow(this)"></td><td class="num"><input type="number" step=".1" oninput="calcMilkRow(this)"></td><td class="num"><span class="m-tot">0</span></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".1"></td><td>'+si(['White','Off-White','Yellow','Watery','Bloody','Abnormal'])+'</td><td>'+si(['None','Clots','Flakes','Watery','Bloody','Colostrum-like'])+'</td><td><input></td><td><input></td><td>'+xbtn+'</td>';
+  tb.appendChild(tr);
+}
+function calcMilkRow(el){var r=el.closest('tr');var inps=r.querySelectorAll('input[type="number"]');var am=+(inps[2]?.value||0),pm=+(inps[3]?.value||0);var tot=am+pm;if(r.querySelector('.m-tot'))r.querySelector('.m-tot').textContent=tot.toFixed(1);calcMilkTotals();}
+function calcMilkTotals(){var am=0,pm=0,tot=0;document.querySelectorAll('#milkBody tr').forEach(function(r){var inps=r.querySelectorAll('input[type="number"]');am+=+(inps[2]?.value||0);pm+=+(inps[3]?.value||0);});tot=am+pm;setT('mAM',am.toFixed(1));setT('mPM',pm.toFixed(1));setT('mTot',tot.toFixed(1));}
+function saveMilkData(){calcMilkTotals();saveState();toast('✅ Milk session saved');}
+
+// ═══════════════════════════════════════════════════
+// REPRODUCTION KPIs
+// ═══════════════════════════════════════════════════
+function calcRepro(){
+  var elig=+(document.getElementById('rElig')?.value||0);
+  var served=+(document.getElementById('rServed')?.value||0);
+  var preg=+(document.getElementById('rPreg')?.value||0);
+  var calvs=+(document.getElementById('rCalv')?.value||0);
+  var straws=+(document.getElementById('rStraws')?.value||0);
+  var sub=elig>0?(served/elig*100).toFixed(1)+'%':'—';
+  var conc1=served>0?(preg/served*100).toFixed(1)+'%':'—';
+  var spc=preg>0?(straws/preg).toFixed(2):'—';
+  var pregRate=elig>0?(preg/elig*100).toFixed(1)+'%':'—';
+  var calvRate=preg>0?(calvs/preg*100).toFixed(1)+'%':'—';
+  setV('rSub',sub);setV('rConc',conc1);
+  setV('rPR',pregRate);setV('rSPC',spc);setV('rCR',calvRate);
+}
+function setV(id,val){var el=document.getElementById(id);if(el)el.textContent=val;}
+
+// ═══════════════════════════════════════════════════
+// FEED COST ANALYSIS
+// ═══════════════════════════════════════════════════
+function calcFeedCost(){
+  var tc=+(document.getElementById('fcTot')?.value||0);
+  var milk=+(document.getElementById('fcMilk')?.value||0);
+  var cows=+(document.getElementById('fcCows')?.value||0);
+  var days=+(document.getElementById('fcDays')?.value||30);
+  var cpl=milk>0?tc/milk:0;
+  var cpcd=cows>0&&days>0?tc/(cows*days):0;
+  var rev=milk*+(document.querySelector('#currSel')?.value==='USD'?0.4:5);
+  var pct=rev>0?tc/rev*100:0;
+  setT('fcCPL',fc(cpl));
+  setT('fcCPCD',fc(cpcd));
+  setT('fcPct',pct.toFixed(1)+'%');
+}
+
+// ═══════════════════════════════════════════════════
+// PROFITABILITY
+// ═══════════════════════════════════════════════════
+function calcProfit(){
+  var g=function(id){return +(document.getElementById(id)?.value||0);};
+  var inc=g('pMilk')+g('pAnim')+g('pCalf')+g('pOtherInc');
+  var exp=g('pFeed')+g('pLabour')+g('pVet')+g('pAI')+g('pUtil')+g('pEquip')+g('pDepr')+g('pOtherExp');
+  var net=inc-exp;var margin=inc>0?net/inc*100:0;
+  setT('pTotInc',fc(inc));setT('pTotExp',fc(exp));
+  var netEl=document.getElementById('pNet');
+  if(netEl){netEl.textContent=fc(net);netEl.style.color=net>=0?'var(--success)':'var(--danger)';}
+  var mEl=document.getElementById('pMargin');
+  if(mEl)mEl.textContent='Profit Margin: '+margin.toFixed(1)+'%';
+}
+
+// ═══════════════════════════════════════════════════
+// NET WORTH
+// ═══════════════════════════════════════════════════
+function calcNW(){
+  var g=function(id){return +(document.getElementById(id)?.value||0);};
+  var tca=g('na-cash')+g('na-milkr')+g('na-feed')+g('na-meds')+g('na-oca');
+  var tia=g('na-herd')+g('na-equip')+g('na-veh')+g('na-oint');
+  var tlta=g('na-land')+g('na-bldg')+g('na-olt');
+  var ta=tca+tia+tlta;
+  var tcl=g('nl-op')+g('nl-ap')+g('nl-int')+g('nl-ocl');
+  var tl=tcl+g('nl-il')+g('nl-ltl')+g('nl-hp');
+  var nw=ta-tl;
+  setT('na-tca',fc(tca));setT('na-tia',fc(tia));setT('na-tlta',fc(tlta));setT('na-tot',fc(ta));
+  setT('nl-tcl',fc(tcl));setT('nl-tot',fc(tl));
+  var nwEl=document.getElementById('nwVal');
+  if(nwEl){nwEl.textContent=fc(nw);nwEl.style.color=nw>=0?'var(--success)':'var(--danger)';}
+  setT('kNW',fc(nw));
+}
+
+// ═══════════════════════════════════════════════════
+// CASH FLOW
+// ═══════════════════════════════════════════════════
+var CF_IN=['Milk Sales','Cull Cow Sales','Calf Sales','Heifer Sales','Bull Sales','Manure/Compost','Other Farm Income','Government Support'];
+var CF_OUT=['Feed – Concentrates','Feed – Roughage','Feed – Minerals','Labour – Permanent','Labour – Casual','Veterinary Services','Medicines & Vaccines','AI & Reproduction','Milking Supplies','Utilities & Electricity','Fuel & Lubricants','Equipment Maintenance','Building Maintenance','Transport & Marketing','Loan Repayment – Principal','Loan Interest','Insurance','Other Expenses'];
+var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function initCF(){
+  var tb=document.getElementById('cfBody');if(!tb)return;tb.innerHTML='';
+  function hdr(lbl){var tr=document.createElement('tr');tr.innerHTML='<td colspan="14" style="background:rgba(58,170,200,.12);color:var(--ocean);font-size:.7rem;font-weight:700;letter-spacing:1px;padding:6px 10px;text-transform:uppercase;">'+lbl+'</td>';tb.appendChild(tr);}
+  function mkRow(lbl,key,cls){
+    var tr=document.createElement('tr');tr.className=cls||'';
+    var html='<td style="padding-left:14px;">'+lbl+'</td><td class="num" id="cf-tot-'+key+'">0</td>';
+    MONTHS.forEach(function(_,i){html+='<td class="num"><input style="width:58px;background:transparent;border:none;color:var(--white);font-family:var(--fm);font-size:.72rem;text-align:right;outline:none;" type="number" value="0" id="cf-'+key+'-'+i+'" oninput="calcCFRow(\''+key+'\')"></td>';});
+    tr.innerHTML=html;tb.appendChild(tr);
+  }
+  hdr('CASH INFLOW');CF_IN.forEach(function(l,i){mkRow(l,'in'+i);});
+  var totIn=document.createElement('tr');totIn.style.fontWeight='700';
+  totIn.innerHTML='<td>Total Cash Inflow</td><td class="num" id="cf-totIN">0</td>'+MONTHS.map(function(_,i){return '<td class="num" id="cf-totIN-'+i+'">0</td>';}).join('');tb.appendChild(totIn);
+  hdr('CASH OUTFLOW');CF_OUT.forEach(function(l,i){mkRow(l,'out'+i);});
+  var totOut=document.createElement('tr');totOut.style.fontWeight='700';
+  totOut.innerHTML='<td>Total Cash Outflow</td><td class="num" id="cf-totOUT">0</td>'+MONTHS.map(function(_,i){return '<td class="num" id="cf-totOUT-'+i+'">0</td>';}).join('');tb.appendChild(totOut);
+  var netRow=document.createElement('tr');netRow.style.cssText='background:rgba(58,170,200,.1);font-weight:700;';
+  netRow.innerHTML='<td>NET CASH FLOW</td><td class="num" id="cf-net">0</td>'+MONTHS.map(function(_,i){return '<td class="num" id="cf-net-'+i+'">0</td>';}).join('');tb.appendChild(netRow);
+}
+function calcCFRow(key){var t=0;MONTHS.forEach(function(_,i){var el=document.getElementById('cf-'+key+'-'+i);if(el)t+=+(el.value||0);});var tot=document.getElementById('cf-tot-'+key);if(tot)tot.textContent=fc(t);calcCF();}
+function calcCF(){
+  for(var m=0;m<12;m++){
+    var inS=0,outS=0;
+    CF_IN.forEach(function(_,i){var el=document.getElementById('cf-in'+i+'-'+m);if(el)inS+=+(el.value||0);});
+    CF_OUT.forEach(function(_,i){var el=document.getElementById('cf-out'+i+'-'+m);if(el)outS+=+(el.value||0);});
+    var ti=document.getElementById('cf-totIN-'+m);if(ti)ti.textContent=fc(inS);
+    var to=document.getElementById('cf-totOUT-'+m);if(to)to.textContent=fc(outS);
+    var ne=document.getElementById('cf-net-'+m);if(ne)ne.textContent=fc(inS-outS);
+    var tin=0,tout=0;
+    CF_IN.forEach(function(_,i){var el=document.getElementById('cf-in'+i+'-'+m);if(el)tin+=+(el.value||0);});
+    CF_OUT.forEach(function(_,i){var el=document.getElementById('cf-out'+i+'-'+m);if(el)tout+=+(el.value||0);});
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════════════
+function renderDashNotifs(){
+  var panel=document.getElementById('notifPanel');if(!panel)return;
+  var notifs=[
+    {icon:'🔔',title:'Vaccination Due',body:'3 animals due for Brucellosis vaccination this week',time:'Today',type:'today'},
+    {icon:'🔬',title:'PD Follow-up',body:'2 cows due for pregnancy confirmation',time:'Tomorrow',type:'week'},
+    {icon:'🥛',title:'SCC Alert',body:'Cow ID-045 SCC exceeded 400,000 — check for mastitis',time:'Today',type:'overdue'},
+    {icon:'🌾',title:'Feed Stock Low',body:'Dairy concentrate below re-order level (< 200 kg)',time:'This week',type:'week'},
+    {icon:'💊',title:'Drug Withdrawal',body:'Cow ID-023 milk withholding period ends tomorrow',time:'Tomorrow',type:'today'},
+  ];
+  var typeClass={overdue:'overdue',today:'',week:'gold',month:'ocean'};
+  panel.innerHTML=notifs.map(function(n){return '<div class="notif '+(typeClass[n.type]||'')+'" data-type="'+n.type+'"><div class="notif-ic">'+n.icon+'</div><div><div class="notif-title">'+n.title+'</div><div class="notif-body">'+n.body+'</div><div class="notif-time">'+n.time+'</div></div></div>';}).join('');
+}
+function filterNotifs(f){document.querySelectorAll('.notif-item').forEach(function(el){el.style.display=(f==='all'||el.dataset.type===f)?'':'none';});}
+function renderHerdStatus(){
+  var p=document.getElementById('herdStatusPanel');if(!p)return;
+  var statuses=[
+    {label:'Milking Cows',n:ST.animals.filter(function(a){return a.stage==='Milking';}).length||0,color:'sd-blue'},
+    {label:'Dry Cows',n:ST.animals.filter(function(a){return a.stage&&a.stage.includes('Dry');}).length||0,color:'sd-orange'},
+    {label:'Heifers',n:ST.animals.filter(function(a){return a.stage&&a.stage.includes('Heifer');}).length||0,color:'sd-green'},
+    {label:'Calves',n:ST.animals.filter(function(a){return a.stage==='Calf';}).length||0,color:'sd-orange'},
+    {label:'Bulls',n:ST.animals.filter(function(a){return a.stage==='Bull';}).length||0,color:'sd-blue'},
+  ];
+  p.innerHTML=statuses.map(function(s){return '<div class="nw-row"><label><span class="status-dot '+s.color+'"></span>'+s.label+'</label><span style="font-family:var(--fm);color:var(--ocean);">'+s.n+'</span></div>';}).join('');
+  setT('kHerd',ST.animals.length||'0');
+  setT('kMilking',ST.animals.filter(function(a){return a.stage==='Milking';}).length||'0');
+}
+function renderUrgent(){
+  var p=document.getElementById('urgentPanel');if(!p)return;
+  var items=[
+    {icon:'🔴',text:'2 cows overdue for dry-off'},
+    {icon:'🟡',text:'Heat detection check due: 5 animals'},
+    {icon:'🔵',text:'Monthly milk quality test scheduled'},
+  ];
+  p.innerHTML=items.map(function(it){return '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.8rem;"><span>'+it.icon+'</span><span style="color:var(--forest);">'+it.text+'</span></div>';}).join('');
+}
+function drawMilkChart(){
+  var wrap=document.getElementById('milkChart');if(!wrap)return;wrap.innerHTML='';
+  var days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var amVals=[180,175,182,178,185,170,176];
+  var pmVals=[160,155,162,158,168,150,156];
+  var maxV=Math.max(...amVals,...pmVals,1);
+  days.forEach(function(d,i){
+    var col=document.createElement('div');col.style.cssText='flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;';
+    var b1=document.createElement('div');b1.style.cssText='width:100%;border-radius:2px 2px 0 0;background:var(--sky);height:'+(amVals[i]/maxV*140)+'px;';
+    var b2=document.createElement('div');b2.style.cssText='width:100%;border-radius:0;background:var(--gilt);height:'+(pmVals[i]/maxV*140)+'px;opacity:.8;';
+    var lbl=document.createElement('div');lbl.style.cssText='font-size:.58rem;color:var(--text-dim);margin-top:2px;';lbl.textContent=d;
+    col.append(b1,b2,lbl);wrap.appendChild(col);
+  });
+}
+function renderDSSAlerts(){
+  var p=document.getElementById('dssAlerts');if(!p)return;
+  var alerts=[
+    {icon:'🔥',color:'red',title:'Mastitis Risk Alert',text:'Bulk tank SCC trending upward for 3 consecutive days. Recommend CMT test all cows and check milking hygiene protocol.',priority:'Critical'},
+    {icon:'❤️',color:'orange',title:'Heat Detection Reminder',text:'Cow ID-034: Last recorded heat 22 days ago. Expected next heat window: today ±2 days. Monitor closely.',priority:'High'},
+    {icon:'🌿',color:'blue',title:'Nutritional Adjustment',text:'Peak production cows averaging 24 L/day — consider increasing bypass protein supplement by 0.3 kg/cow/day.',priority:'Medium'},
+    {icon:'📅',color:'green',title:'Dry-Off Reminder',text:'Cow ID-012 (280 DIM): Recommend dry-off in 7 days. Prepare transition cow ration and dry-cow therapy.',priority:'Scheduled'},
+  ];
+  var colorMap={red:'var(--red)',orange:'var(--orange)',blue:'var(--sky)',green:'var(--success)'};
+  p.innerHTML=alerts.map(function(a){return '<div style="border-left:3px solid '+colorMap[a.color]+';padding:10px 14px;margin-bottom:8px;background:var(--cream);border-radius:0 var(--r) var(--r) 0;border:1px solid var(--border);"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span>'+a.icon+'</span><strong style="color:var(--forest);font-size:.85rem;">'+a.title+'</strong><span class="badge b-'+a.color+'" style="margin-left:auto;font-size:.62rem;">'+a.priority+'</span></div><div style="font-size:.78rem;color:var(--text-muted);line-height:1.6;">'+a.text+'</div></div>';}).join('');
+}
+function runSimulation(){}; function runSim(){
+  var fc_=+(document.getElementById('simFC')?.value||0);
+  var chg=+(document.getElementById('simChg')?.value||0)/100;
+  var litres=+(document.getElementById('simLit')?.value||0);
+  var kgCow=+(document.getElementById('simFKg')?.value||0);
+  var cows=+(document.getElementById('simCows')?.value||0);
+  var milkPrice=+(document.getElementById('simMP')?.value||0);
+  var newCost=fc_*(1+chg);
+  var monthFeed=newCost*kgCow*cows*30;
+  var revenue=litres*milkPrice;
+  var margin=revenue-monthFeed;
+  var res=document.getElementById('simResult');
+  if(res){res.innerHTML='<strong>New Feed Cost/kg:</strong> '+fc(newCost)+'<br><strong>Monthly Feed Cost:</strong> '+fc(monthFeed)+'<br><strong>Monthly Milk Revenue:</strong> '+fc(revenue)+'<br><strong>Gross Margin:</strong> <span style="color:'+(margin>=0?'var(--success)':'var(--danger)')+'">'+fc(margin)+'</span>';}
+}
+function traceAnimal(){
+  var id=document.getElementById('traceId')?.value||'';
+  var res=document.getElementById('traceResult');
+  if(!res)return;
+  var animal=ST.animals.find(function(a){return a.id===id||a.name===id;});
+  if(animal){res.innerHTML='<div class="card"><div class="card-title"><span class="ic">🐄</span>Trace Result: '+animal.id+'</div><div class="fg"><div class="ff"><label class="fl">Name</label><div>'+animal.name+'</div></div><div class="ff"><label class="fl">Breed</label><div>'+animal.breed+'</div></div><div class="ff"><label class="fl">Stage</label><div>'+animal.stage+'</div></div><div class="ff"><label class="fl">Status</label><div>'+animal.status+'</div></div></div></div>';}
+  else{res.innerHTML='<div style="color:var(--text-muted);font-style:italic;font-size:.82rem;">No animal found with ID or name: "'+id+'"</div>';}
+}
+
+// ═══════════════════════════════════════════════════
+// ANIMALS
+// ═══════════════════════════════════════════════════
+var editAnimalIdx=-1;
+function openAddAnimal(){editAnimalIdx=-1;['am-id','am-name','am-rfid','am-notes','am-sire','am-dam','am-accdate'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});document.getElementById('am-price').value='0';document.getElementById('am-parity').value='0';document.getElementById('animalModalTitle').textContent='Register Animal';openModal('animalModal');}
+function saveAnimal(){
+  var a={id:document.getElementById('am-id').value.trim(),name:document.getElementById('am-name').value,rfid:document.getElementById('am-rfid').value,breed:document.getElementById('am-breed').value,dob:document.getElementById('am-dob').value,sex:document.getElementById('am-sex').value,parity:document.getElementById('am-parity').value,stage:document.getElementById('am-stage').value,sire:document.getElementById('am-sire').value,dam:document.getElementById('am-dam').value,source:document.getElementById('am-source').value,acqdate:document.getElementById('am-acqdate').value,price:document.getElementById('am-price').value,status:document.getElementById('am-status').value,notes:document.getElementById('am-notes').value};
+  if(!a.id){toast('Animal ID is required');return;}
+  if(editAnimalIdx>=0)ST.animals[editAnimalIdx]=a;else ST.animals.push(a);
+  closeModal('animalModal');renderAnimals();saveState();toast('✅ Animal saved: '+a.id);
+}
+function renderAnimals(){
+  var tb=document.getElementById('animalBody');if(!tb)return;
+  tb.innerHTML=ST.animals.map(function(a,i){
+    var age=a.dob?Math.floor((Date.now()-new Date(a.dob))/(365.25*86400000))+'y':'—';
+    return '<tr><td>'+esc(a.id)+'</td><td>'+esc(a.name||'—')+'</td><td>'+esc(a.rfid||'—')+'</td><td>'+esc(a.breed||'—')+'</td><td>'+esc(a.dob||'—')+'</td><td>'+age+'</td><td>'+esc(a.sex||'—')+'</td><td>'+esc(a.parity||'—')+'</td><td><span class="badge b-blue">'+esc(a.stage||'—')+'</span></td><td>'+esc(a.sire||'—')+'</td><td>'+esc(a.dam||'—')+'</td><td>'+esc(a.acqdate||'—')+'</td><td>'+esc(a.source||'—')+'</td><td><span class="badge '+(a.status==='Active'?'b-green':a.status==='Sold'?'b-gold':'b-red')+'">'+esc(a.status||'—')+'</span></td><td>'+esc(a.notes||'—')+'</td><td><button class="btn btn-outline btn-sm" onclick="editAnimal('+i+')">✏️</button> <button class="btn btn-danger btn-sm" onclick="delAnimal('+i+')">🗑</button></td></tr>';
+  }).join('');
+  setT('kHerd',ST.animals.length);renderHerdStatus();
+}
+function editAnimal(i){editAnimalIdx=i;var a=ST.animals[i];['id','name','rfid','parity','sire','dam','acqdate','notes'].forEach(function(f){var el=document.getElementById('am-'+f);if(el)el.value=a[f]||'';});document.getElementById('am-dob').value=a.dob||'';document.getElementById('am-price').value=a.price||0;document.getElementById('am-breed').value=a.breed||'Holstein-Friesian';document.getElementById('am-sex').value=a.sex||'Female (Cow)';document.getElementById('am-stage').value=a.stage||'Milking';document.getElementById('am-source').value=a.source||'Born on Farm';document.getElementById('am-status').value=a.status||'Active';document.getElementById('animalModalTitle').textContent='Edit Animal';openModal('animalModal');}
+function delAnimal(i){if(confirm('Delete animal?')){ST.animals.splice(i,1);renderAnimals();saveState();}}
+
+// ═══════════════════════════════════════════════════
+// SUPPLIERS & CUSTOMERS
+// ═══════════════════════════════════════════════════
+var editSuppIdx=-1,editCustIdx=-1;
+function openSupplierModal(){editSuppIdx=-1;['sm-name','sm-contact','sm-phone','sm-wa','sm-email','sm-products','sm-addr','sm-accno'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});document.getElementById('sm-terms').value=30;document.getElementById('suppModalTitle').textContent='Add Supplier';openModal('suppModal');}
+function saveSupplier(){var s={name:document.getElementById('sm-name').value.trim(),contact:document.getElementById('sm-contact').value,phone:document.getElementById('sm-phone').value,wa:document.getElementById('sm-wa').value,email:document.getElementById('sm-email').value,cat:document.getElementById('sm-cat').value,products:document.getElementById('sm-products').value,addr:document.getElementById('sm-addr').value,terms:document.getElementById('sm-terms').value,accno:document.getElementById('sm-accno').value};if(!s.name){toast('Name required');return;}if(editSuppIdx>=0)ST.suppliers[editSuppIdx]=s;else ST.suppliers.push(s);closeModal('suppModal');renderSuppliers();saveState();toast('✅ Supplier saved');}
+function editSupplier(i){editSuppIdx=i;var s=ST.suppliers[i];['name','contact','phone','wa','email','products','addr','terms','accno'].forEach(function(f){var el=document.getElementById('sm-'+f);if(el)el.value=s[f]||'';});document.getElementById('sm-cat').value=s.cat||'Feed & Nutrition';document.getElementById('suppModalTitle').textContent='Edit Supplier';openModal('suppModal');}
+function delSupplier(i){if(confirm('Delete supplier?')){ST.suppliers.splice(i,1);renderSuppliers();saveState();}}
+function renderSuppliers(){
+  var grid=document.getElementById('suppGrid');if(!grid)return;
+  if(!ST.suppliers.length){grid.innerHTML='<p style="color:var(--text-muted);font-size:.84rem;font-style:italic;">No suppliers yet.</p>';return;}
+  grid.innerHTML=ST.suppliers.map(function(s,i){return contactCard(s,i,'supplier');}).join('');
+}
+function openCustomerModal(){editCustIdx=-1;['cm-name','cm-contact','cm-phone','cm-wa','cm-email','cm-notes'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});document.getElementById('cm-vol').value='';document.getElementById('cm-price').value='';document.getElementById('custModalTitle').textContent='Add Customer';openModal('custModal');}
+function saveCustomer(){var c={name:document.getElementById('cm-name').value.trim(),contact:document.getElementById('cm-contact').value,phone:document.getElementById('cm-phone').value,wa:document.getElementById('cm-wa').value,email:document.getElementById('cm-email').value,type:document.getElementById('cm-type').value,vol:document.getElementById('cm-vol').value,price:document.getElementById('cm-price').value,notes:document.getElementById('cm-notes').value};if(!c.name){toast('Name required');return;}if(editCustIdx>=0)ST.customers[editCustIdx]=c;else ST.customers.push(c);closeModal('custModal');renderCustomers();saveState();toast('✅ Customer saved');}
+function editCustomer(i){editCustIdx=i;var c=ST.customers[i];['name','contact','phone','wa','email','notes'].forEach(function(f){var el=document.getElementById('cm-'+f);if(el)el.value=c[f]||'';});document.getElementById('cm-vol').value=c.vol||'';document.getElementById('cm-price').value=c.price||'';document.getElementById('cm-type').value=c.type||'Dairy Processor';document.getElementById('custModalTitle').textContent='Edit Customer';openModal('custModal');}
+function delCustomer(i){if(confirm('Delete customer?')){ST.customers.splice(i,1);renderCustomers();saveState();}}
+function renderCustomers(){
+  var grid=document.getElementById('custGrid');if(!grid)return;
+  if(!ST.customers.length){grid.innerHTML='<p style="color:var(--text-muted);font-size:.84rem;font-style:italic;">No customers yet.</p>';return;}
+  grid.innerHTML=ST.customers.map(function(c,i){return contactCard(c,i,'customer');}).join('');
+}
+function contactCard(rec,i,type){
+  var isSup=type==='supplier';
+  var waNum=(rec.wa||rec.phone||'').replace(/[^0-9]/g,'');
+  var links='';
+  if(rec.wa||rec.phone)links+='<a class="clink clink-wa" href="https://wa.me/'+waNum+'" target="_blank">💬 WhatsApp</a>';
+  if(rec.email)links+='<a class="clink clink-em" href="mailto:'+rec.email+'">📧 Email</a>';
+  if(rec.phone)links+='<a class="clink clink-ph" href="tel:'+rec.phone+'">📞 Call</a>';
+  var editFn=isSup?'editSupplier('+i+')':'editCustomer('+i+')';
+  var delFn=isSup?'delSupplier('+i+')':'delCustomer('+i+')';
+  return '<div style="background:white;border:1px solid var(--border);border-radius:var(--r2);padding:14px;"><div style="display:flex;align-items:flex-start;gap:12px;"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--sky));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;color:#fff;font-size:1rem;flex-shrink:0;">'+(rec.name||'?').slice(0,2).toUpperCase()+'</div><div style="flex:1;"><div style="font-weight:600;color:var(--forest);">'+esc(rec.name||'')+'</div><div style="font-size:.76rem;color:var(--text-muted);">'+esc(rec.contact||rec.type||'')+'</div><div style="font-size:.76rem;color:var(--text-muted);">'+esc(rec.phone||'—')+'</div>'+(rec.products||rec.notes?'<div style="font-size:.74rem;color:var(--text-dim);margin-top:2px;">'+esc(rec.products||rec.notes||'')+'</div>':'')+'<div class="clink-row">'+links+'</div><div style="display:flex;gap:6px;margin-top:8px;"><button class="btn btn-outline btn-sm" onclick="'+editFn+'">✏️ Edit</button><button class="btn btn-danger btn-sm" onclick="'+delFn+'">🗑</button></div></div></div></div>';
+}
+function filterCards(gridId,q){q=q.toLowerCase();document.querySelectorAll('#'+gridId+' > div').forEach(function(c){c.style.display=c.textContent.toLowerCase().includes(q)?'':'none';});}
+function exportContactsCSV(type){var list=type==='suppliers'?ST.suppliers:ST.customers;if(!list.length){toast('No records');return;}var keys=Object.keys(list[0]);var csv=[keys.join(','),...list.map(function(r){return keys.map(function(k){return '"'+(r[k]||'').toString().replace(/"/g,'""')+'"';}).join(',');})].join('\n');dl(csv,'text/csv',type+'_'+isoDate()+'.csv');toast('✅ Exported');}
+
+// ═══════════════════════════════════════════════════
+// LICENSE
+// ═══════════════════════════════════════════════════
+function genDeviceID(){var id=localStorage.getItem('taem_dairy_did');if(!id){id='TAEM-DAIRY-'+Math.random().toString(36).substr(2,4).toUpperCase()+'-'+Math.random().toString(36).substr(2,4).toUpperCase()+'-'+Math.random().toString(36).substr(2,4).toUpperCase();localStorage.setItem('taem_dairy_did',id);}['licDeviceId','modalDevId'].forEach(function(elId){var el=document.getElementById(elId);if(el)el.textContent=id;});}
+function activateLicense(){doActivate(document.getElementById('licKeyInput')?.value.trim());}
+function activateLicensePage(){doActivate(document.getElementById('licKeyPg')?.value.trim());}
+function doActivate(key){
+  var msgEl=document.getElementById('licActivMsg')||document.getElementById('licPageMsg');
+  if(!key){toast('Enter a license key');return;}
+  var isAnn=key.startsWith('SNH-DAIRY-ANN-')||key.startsWith('TAEM-DAIRY-ANN-');
+  var isPerp=key.startsWith('SNH-DAIRY-PRP-')||key.startsWith('TAEM-DAIRY-PRP-');
+  if(isAnn||isPerp||key.length>=16){
+    ST.licensed=true;ST.licType=isPerp?'perpetual':'annual';
+    localStorage.setItem(LIC_KEY,JSON.stringify({key:key,type:ST.licType,activated:new Date().toISOString()}));
+    document.getElementById('licBanner').style.display='none';
+    document.getElementById('licBadge').textContent=isPerp?'♾️ Perpetual License':'📅 Annual License';
+    document.getElementById('licBadge').className='badge b-green';
+    document.getElementById('licTypeDisp').textContent=isPerp?'Perpetual (Lifetime)':'Annual (1 Year)';
+    closeModal('licModal');toast('✅ License activated!');saveState();
+  } else {
+    if(msgEl){msgEl.style.color='var(--danger)';msgEl.textContent='❌ Invalid key format';}
+  }
+}
+function checkLicStatus(){if(ST.licensed)toast('✅ License valid and active');else{var d=Math.max(0,30-Math.floor((Date.now()-parseInt(localStorage.getItem(TRIAL_KEY)||Date.now()))/86400000));toast('⏳ Trial — '+d+' days remaining');}}
+
+// ═══════════════════════════════════════════════════
+// PIN CHANGE
+// ═══════════════════════════════════════════════════
+function changePIN(){var p1=document.getElementById('newP1').value,p2=document.getElementById('newP2').value;if(!/^\d{4}$/.test(p1)){toast('PIN must be exactly 4 digits');return;}if(p1!==p2){toast('PINs do not match');return;}localStorage.setItem(PIN_KEY,btoa(btoa(p1)));toast('✅ Passcode updated');}
+function forgotPIN(){alert('Contact Suwani Nexus Hub:\n📧 taemsoftware@gmail.com\n💬 +27 63 953 1185 | +27 67 277 6512\n📞 +27 63 953 1185\n\nProvide your Device ID from the License page.');}
+
+// ═══════════════════════════════════════════════════
+// PERSISTENCE
+// ═══════════════════════════════════════════════════
+function saveState(){try{localStorage.setItem(DATA_KEY,JSON.stringify({currency:ST.currency,suppliers:ST.suppliers,customers:ST.customers,animals:ST.animals,licensed:ST.licensed,licType:ST.licType,farmName:ST.farmName}));}catch(e){}}
+function loadState(){try{var lic=localStorage.getItem(LIC_KEY);if(lic){var ld=JSON.parse(lic);ST.licensed=true;ST.licType=ld.type||'annual';}var raw=localStorage.getItem(DATA_KEY);if(!raw)return;var d=JSON.parse(raw);if(d.currency){ST.currency=d.currency;document.getElementById('currSel').value=d.currency;}if(d.suppliers)ST.suppliers=d.suppliers;if(d.customers)ST.customers=d.customers;if(d.animals)ST.animals=d.animals;if(d.licensed)ST.licensed=d.licensed;if(d.farmName){ST.farmName=d.farmName;}ST.trialStart=parseInt(localStorage.getItem(TRIAL_KEY)||Date.now());}catch(e){}}
+function saveFarmName(){ST.farmName=document.getElementById('farmNameInp').value;setT('dashFarm',ST.farmName);saveState();}
+function exportAllData(){dl(JSON.stringify({ST:ST,version:'2.26',exported:new Date().toISOString()},null,2),'application/json','taem_dairy_backup_'+isoDate()+'.json');toast('✅ Exported');}
+function importData(ev){var f=ev.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(e){try{var d=JSON.parse(e.target.result);if(d.ST){Object.assign(ST,d.ST);saveState();renderAnimals();renderSuppliers();renderCustomers();toast('✅ Data imported');}else toast('❌ Invalid file');}catch{toast('❌ Parse error');}};r.readAsText(f);ev.target.value='';}
+function clearAllData(){if(!confirm('Clear ALL data? This cannot be undone.'))return;localStorage.clear();location.reload();}
+function exportNWCSV(){var rows=[['Category','Sub-category','Value']];var fields=[['Assets','Cash & Bank',document.getElementById('na-cash')?.value||0],['Assets','Breeding Herd',document.getElementById('na-herd')?.value||0],['Liabilities','Operating Loan',document.getElementById('nl-op')?.value||0]];dl(rows.concat(fields).map(function(r){return r.map(function(v){return '"'+v+'"';}).join(',');}).join('\n'),'text/csv','net_worth_'+isoDate()+'.csv');toast('✅ Exported');}
+
+// ═══════════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════════
+function setT(id,val){var el=document.getElementById(id);if(el)el.textContent=val;}
+function parseFC(s){return parseFloat((s||'0').replace(/[^0-9.\-]/g,''))||0;}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function isoDate(){return new Date().toISOString().split('T')[0];}
+function dl(content,mime,name){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type:mime}));a.download=name;a.click();}
+function exportCSV(tableId,name){var tbl=document.getElementById(tableId);if(!tbl){toast('Table not found');return;}var rows=[...tbl.querySelectorAll('tr')].map(function(r){return [...r.querySelectorAll('th,td')].map(function(c){return '"'+c.textContent.trim().replace(/"/g,'""')+'"';}).join(',');});dl(rows.join('\n'),'text/csv',name+'_'+isoDate()+'.csv');toast('✅ Exported: '+name+'.csv');}
+function searchTable(tableId,q){q=q.toLowerCase();document.querySelectorAll('#'+tableId+' tbody tr').forEach(function(r){r.style.display=r.textContent.toLowerCase().includes(q)?'':'none';});}
+function openModal(id){document.getElementById(id).classList.add('on');}
+function closeModal(id){document.getElementById(id).classList.remove('on');}
+document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)closeModal(ov.id);});});
+function updateTopDate(){var el=document.getElementById('tbDate');if(el)el.textContent=new Date().toLocaleDateString('en-ZA',{weekday:'short',year:'numeric',month:'short',day:'numeric'})+' '+new Date().toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'});}
+var _toastT;function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(function(){t.classList.remove('show');},3000);}
+
+
+// ── Extra row templates for new pages ──
+function xb(){return '<button class="btn btn-danger btn-sm" onclick="delRow(this)">x</button>';}
+function si2(opts){return '<select style="background:transparent;border:none;color:var(--text-body);font-family:var(--fb);font-size:.78rem;width:100%;outline:none;">'+opts.map(function(o){return '<option>'+o+'</option>';}).join('')+'</select>';}
+
+var pedRowTpl=function(){return '<td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td><td>'+xb()+'</td>';};
+var mqRowTpl=function(){return '<td><input type="date"></td><td>'+si2(["Individual Cow","Bulk Tank","Pooled"])+'</td><td><input></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".1"></td><td>'+si2(["Negative","Positive","Not Tested"])+'</td><td>'+si2(["None","Suspected","Confirmed"])+'</td><td>'+si2(["Pass","Fail","Pending"])+'</td><td><input></td><td><input></td><td>'+xb()+'</td>';};
+var lacRowTpl=function(){return '<td><input></td><td>'+si2(["1st","2nd","3rd","4th","5th+"])+'</td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".1"></td><td>'+si2(["Active","Dry","Completed"])+'</td><td>'+xb()+'</td>';};
+var bulkRowTpl=function(){return '<td><input type="date"></td><td><input></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td class="num"><input type="number" step=".1"></td><td><input></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td>'+xb()+'</td>';};
+var parlourRowTpl=function(){return '<td><input type="date"></td><td>'+si2(["AM","PM","Evening"])+'</td><td class="num"><input type="number"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".1"></td><td><input></td><td><input></td><td>'+si2(["Yes","No"])+'</td><td>'+si2(["Positive","Negative","Not Done"])+'</td><td><input></td><td>'+xb()+'</td>';};
+var disRowTpl=function(){return '<td><input></td><td><input type="date"></td><td>'+si2(["Mastitis","Brucellosis","TB","Foot & Mouth","Lumpy Skin","East Coast Fever","Ketosis","Milk Fever","Bloat","Other"])+'</td><td>'+si2(["Mammary","Reproductive","Respiratory","Digestive","Musculoskeletal","Systemic","Other"])+'</td><td>'+si2(["Mild","Moderate","Severe","Critical"])+'</td><td>'+si2(["Yes","No","Unknown"])+'</td><td class="num"><input type="number"></td><td>'+si2(["Yes - Notifiable","No","Unknown"])+'</td><td><input type="date"></td><td>'+si2(["Recovered","Culled","Died","Ongoing"])+'</td><td class="num"><input type="number" value="0"></td><td>'+xb()+'</td>';};
+var vetRowTpl=function(){return '<td><input type="date"></td><td><input></td><td><input></td><td>'+si2(["Routine Check","Emergency","Vaccination","PD","Dehorning","AI Training","Herd Test","Other"])+'</td><td class="num"><input type="number"></td><td><input></td><td><input></td><td>'+si2(["Yes","No"])+'</td><td><input type="date"></td><td class="num"><input type="number" value="0"></td><td><input></td><td>'+xb()+'</td>';};
+var intakeRowTpl=function(){return '<td><input type="date"></td><td><input></td><td class="num"><input type="number" step=".1" oninput="calcIntRow(this)"></td><td class="num"><input type="number" step=".1" oninput="calcIntRow(this)"></td><td class="num"><span class="int-act">0</span></td><td class="num"><span class="int-dm">0</span></td><td>'+si2(["TMR","PMR","Silage","Hay","Concentrate","Pasture","Other"])+'</td><td>'+si2(["AM","PM","All Day"])+'</td><td class="num"><input type="number" step=".1"></td><td class="num"><span class="int-fce">0</span></td><td><input></td><td>'+xb()+'</td>';};
+function calcIntRow(el){var r=el.closest('tr'),inps=r.querySelectorAll('input[type="number"]');var off=+(inps[0]&&inps[0].value||0),ref=+(inps[1]&&inps[1].value||0);var act=Math.max(0,off-ref),dm=act*.35;if(r.querySelector('.int-act'))r.querySelector('.int-act').textContent=act.toFixed(1);if(r.querySelector('.int-dm'))r.querySelector('.int-dm').textContent=dm.toFixed(2);}
+var feedCostRowTpl=function(){return '<td><input type="date"></td><td>'+si2(["Maize Silage","Grass Silage","Lucerne Hay","Maize Grain","Dairy Concentrate","Soya Meal","Mineral Mix","Other"])+'</td><td><input></td><td class="num"><input type="number" step=".1" oninput="calcFCRRow(this)"></td><td>'+si2(["kg","tonne","bale","bag"])+'</td><td class="num"><input type="number" step=".01" oninput="calcFCRRow(this)"></td><td class="num"><span class="fcr-tot">0</span></td><td><input></td><td>'+si2(["Paid","Pending","Overdue"])+'</td><td>'+xb()+'</td>';};
+function calcFCRRow(el){var r=el.closest('tr'),inps=r.querySelectorAll('input[type="number"]');var qty=+(inps[0]&&inps[0].value||0),price=+(inps[1]&&inps[1].value||0);var tot=qty*price;if(r.querySelector('.fcr-tot'))r.querySelector('.fcr-tot').textContent=fc(tot);calcFCRTotal();}
+function calcFCRTotal(){var t=0;document.querySelectorAll('.fcr-tot').forEach(function(s){t+=parseFC(s.textContent);});setT('fcrTot',fc(t));}
+var shiftRowTpl=function(){return '<td><input></td><td><input></td><td><input type="date"></td><td>'+si2(["AM Shift","PM Shift","Night Shift","Full Day"])+'</td><td><input type="time"></td><td><input type="time"></td><td class="num"><input type="number" step=".5"></td><td class="num"><input type="number" step=".5"></td><td>'+si2(["Present","Annual Leave","Sick Leave","Absent","Public Holiday"])+'</td><td>'+xb()+'</td>';};
+var payRowTpl=function(){return '<td><input></td><td><input></td><td><input placeholder="Jan 2025"></td><td class="num"><input type="number" oninput="calcPayRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcPayRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcPayRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcPayRow(this)"></td><td class="num"><input type="number" step=".01" oninput="calcPayRow(this)"></td><td class="num"><span class="pay-net">0</span></td><td>'+si2(["Cash","Bank Transfer","Cheque","M-Pesa","Other"])+'</td><td><input type="date"></td><td>'+xb()+'</td>';};
+function calcPayRow(el){var r=el.closest('tr'),inps=r.querySelectorAll('input[type="number"]');var basic=+(inps[1]&&inps[1].value||0),ot=+(inps[2]&&inps[2].value||0),bon=+(inps[3]&&inps[3].value||0),ded=+(inps[4]&&inps[4].value||0);var net=basic+ot+bon-ded;if(r.querySelector('.pay-net'))r.querySelector('.pay-net').textContent=fc(net);}
+var storRowTpl=function(){return '<td><input type="date"></td><td><input></td><td>'+si2(["Received","Used/Issued","Waste/Loss","Return","Expired/Disposed"])+'</td><td class="num"><input type="number" step=".1"></td><td>'+si2(["kg","L","unit","bale","bag"])+'</td><td><input></td><td><input></td><td>'+si2(["Good","Acceptable","Damaged","Spoiled"])+'</td><td><input></td><td><input></td><td>'+xb()+'</td>';};
+var regRowTpl=function(){return '<td><input></td><td><input></td><td><input type="date"></td><td><input type="date"></td><td>'+si2(["Compliant","Pending","Non-Compliant","Not Applicable"])+'</td><td><input></td><td><input></td><td><input type="date"></td><td>'+xb()+'</td>';};
+var traceRowTpl=function(){return '<td><input></td><td><input type="date"></td><td>'+si2(["Birth","Purchase","Sale","Transfer","Slaughter","Death","Export","Import","Vaccination","Health Check"])+'</td><td><input></td><td><input></td><td>'+si2(["Healthy","Sick","Under Treatment","Quarantine"])+'</td><td><input></td><td><input></td><td>'+xb()+'</td>';};
+var certRowTpl=function(){return '<td>'+si2(["Organic Certification","ISO 22000","HACCP","SANS 1157","Animal Welfare","Export Health Cert","Raw Milk Permit","Other"])+'</td><td><input></td><td><input></td><td><input type="date"></td><td><input type="date"></td><td><input></td><td>'+si2(["Active","Expired","Pending","Suspended"])+'</td><td>'+xb()+'</td>';};
+var auditRowTpl=function(){return '<td><input type="date"></td><td>'+si2(["Internal","External","Regulatory","Customer","Certification","Financial"])+'</td><td><input></td><td><input></td><td><input></td><td class="num"><input type="number" value="0"></td><td><input></td><td>'+si2(["Closed","Open","Pending","In Progress"])+'</td><td><input type="date"></td><td>'+xb()+'</td>';};
+var analRowTpl=function(){return '<td><input placeholder="Jan 2025"></td><td class="num"><input type="number" oninput="calcAnalRow2(this)"></td><td class="num"><input type="number" step=".1" oninput="calcAnalRow2(this)"></td><td class="num"><span class="an-avg">0</span></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number" step=".01"></td><td class="num"><input type="number"></td><td class="num"><input type="number" step=".01" oninput="calcAnalRow2(this)"></td><td class="num"><input type="number" step=".01" oninput="calcAnalRow2(this)"></td><td class="num"><span class="an-mrg">0</span></td>';};
+function calcAnalRow2(el){var r=el.closest('tr'),inps=r.querySelectorAll('input[type="number"]');var cows=+(inps[0]&&inps[0].value||0),yld=+(inps[1]&&inps[1].value||0),inc=+(inps[2]&&inps[2].value||0),feed=+(inps[3]&&inps[3].value||0);var avg=cows>0?yld/(cows*30):0,mrg=inc-feed;if(r.querySelector('.an-avg'))r.querySelector('.an-avg').textContent=avg.toFixed(1);if(r.querySelector('.an-mrg'))r.querySelector('.an-mrg').textContent=fc(mrg);}
+var dssRowTpl=function(){return '<td><input></td><td>'+si2(["Dry Off","Cull & Sell","Replace","Monitor","Continue Lactation"])+'</td><td>'+si2(["Low Production","Reproductive Failure","Chronic Mastitis","Lameness","Old Age","Disease","Economic"])+'</td><td>'+si2(["Critical","High","Medium","Low"])+'</td><td><input type="date"></td><td class="num"><input type="number" step=".01"></td><td>'+si2(["Pending","Approved","Declined","Deferred"])+'</td><td>'+si2(["Not Yet","Sold","Culled","Dried Off","Monitored"])+'</td><td>'+xb()+'</td>';};
+
+// ── Additional helper aliases ──
+function runSim(){
+  var fc_=+(document.getElementById('simFC')&&document.getElementById('simFC').value||0);
+  var chg=+(document.getElementById('simChg')&&document.getElementById('simChg').value||10)/100;
+  var lit=+(document.getElementById('simLit')&&document.getElementById('simLit').value||0);
+  var fkg=+(document.getElementById('simFKg')&&document.getElementById('simFKg').value||20);
+  var cows=+(document.getElementById('simCows')&&document.getElementById('simCows').value||0);
+  var mp=+(document.getElementById('simMP')&&document.getElementById('simMP').value||0);
+  var newFC=fc_*(1+chg),mfeed=newFC*fkg*cows*30,rev=lit*mp,margin=rev-mfeed;
+  var res=document.getElementById('simResult');
+  if(res)res.innerHTML='<strong>New Feed Cost/kg:</strong> '+fc(newFC)+'<br><strong>Monthly Feed Cost:</strong> '+fc(mfeed)+'<br><strong>Monthly Revenue:</strong> '+fc(rev)+'<br><strong>Gross Margin:</strong> <span style="color:'+(margin>=0?'var(--success)':'var(--danger)')+';">'+fc(margin)+'</span>';
+}
+
+function renderSuppliers(){
+  var grid=document.getElementById('suppGrid');if(!grid)return;
+  if(!ST.suppliers.length){grid.innerHTML='<p style="color:var(--text-muted);font-style:italic;">No suppliers yet. Click Add Supplier to begin.</p>';return;}
+  grid.innerHTML=ST.suppliers.map(function(s,i){return contactCard(s,i,'supplier');}).join('');
+}
+function renderCustomers(){
+  var grid=document.getElementById('custGrid');if(!grid)return;
+  if(!ST.customers.length){grid.innerHTML='<p style="color:var(--text-muted);font-style:italic;">No customers yet. Click Add Customer to begin.</p>';return;}
+  grid.innerHTML=ST.customers.map(function(c,i){return contactCard(c,i,'customer');}).join('');
+}
+function contactCard(rec,i,type){
+  var isSup=(type==='supplier');
+  var waNum=(rec.wa||rec.phone||'').replace(/[^0-9]/g,'');
+  var links='';
+  if(rec.wa||rec.phone)links+='<a class="clink clink-wa" href="https://wa.me/'+waNum+'" target="_blank">WhatsApp</a>';
+  if(rec.email)links+='<a class="clink clink-em" href="mailto:'+rec.email+'">Email</a>';
+  if(rec.phone)links+='<a class="clink clink-ph" href="tel:'+rec.phone+'">Call</a>';
+  var editFn=isSup?'editSupplier('+i+')':'editCustomer('+i+')';
+  var delFn=isSup?'delSupplier('+i+')':'delCustomer('+i+')';
+  var nm=(rec.name||'?');
+  var initials=nm.replace(/[^a-zA-Z ]/g,'').trim().split(' ').filter(function(w){return w;}).map(function(w){return w[0];}).join('').slice(0,2).toUpperCase()||nm.slice(0,2).toUpperCase();
+  return '<div class="ccard"><div style="display:flex;gap:12px;align-items:flex-start;"><div class="ccard-av">'+initials+'</div><div style="flex:1;"><div class="ccard-name">'+esc(nm)+'</div><div class="ccard-d">'+esc(rec.contact||rec.type||'')+'</div><div class="ccard-d">'+esc(rec.phone||'-')+'</div>'+(rec.products||rec.notes?'<div style="font-size:.74rem;color:var(--text-dim);margin-top:2px;">'+esc(rec.products||rec.notes||'')+'</div>':'')+'<div class="clink-row" style="margin-top:8px;">'+links+'</div><div style="display:flex;gap:6px;margin-top:8px;"><button class="btn btn-outline btn-sm" onclick="'+editFn+'">Edit</button> <button class="btn btn-danger btn-sm" onclick="'+delFn+'">Delete</button></div></div></div></div>';
+}
+function filterCards(gridId,q){q=q.toLowerCase();document.querySelectorAll('#'+gridId+' > div').forEach(function(c){c.style.display=c.textContent.toLowerCase().includes(q)?'':'none';});}
+function exportContactsCSV(type){var list=type==='suppliers'?ST.suppliers:ST.customers;if(!list.length){toast('No records');return;}var keys=Object.keys(list[0]);var csv=[keys.join(',')].concat(list.map(function(r){return keys.map(function(k){return '"'+(r[k]||'').replace(/"/g,'""')+'"';}).join(',');})).join('\n');dl(csv,'text/csv',type+'_'+isoDate()+'.csv');toast('Exported');}
+function exportAll(){dl(JSON.stringify({ST:ST,version:'2.26',exported:new Date().toISOString()},null,2),'application/json','taem_dairy_backup_'+isoDate()+'.json');toast('Exported');}
+function clearAll(){if(!confirm('Clear ALL data? This cannot be undone.'))return;localStorage.clear();location.reload();}
+function importData(ev){var f=ev.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(e){try{var d=JSON.parse(e.target.result);if(d.ST){Object.assign(ST,d.ST);saveState();renderAnimals();renderSuppliers();renderCustomers();toast('Data imported');}else toast('Invalid file format');}catch(err){toast('Parse error');}};r.readAsText(f);ev.target.value='';}
+function exportNWCSV(){var rows=[['Category','Sub-category','Value']];[['Assets','Cash & Bank',document.getElementById('na-cash')&&document.getElementById('na-cash').value||0],['Assets','Breeding Herd',document.getElementById('na-herd')&&document.getElementById('na-herd').value||0],['Liabilities','Operating Loan',document.getElementById('nl-op')&&document.getElementById('nl-op').value||0]].forEach(function(r){rows.push(r);});dl(rows.map(function(r){return r.map(function(v){return '"'+v+'"';}).join(',');}).join('\n'),'text/csv','net_worth_'+isoDate()+'.csv');toast('Exported');}
+function forgotPIN(){alert('Contact Suwani Nexus Hub:\ntaemsoftware@gmail.com\nWhatsApp: +27 63 953 1185 | +27 67 277 6512\n+27 63 953 1185\n\nProvide your Device ID from the License page.');}
+function calcSuppliesRow(el){}
+function calcFeedStockRow(el){}
+function calcFSRow(el){calcFeedStockRow(el);}
+
+</script>
+</body>
+</html>
